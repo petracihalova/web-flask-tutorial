@@ -1,4 +1,4 @@
-## 6. Šablonování a práce s formuláři
+# 6. Šablonování a práce s formuláři
 ### OBSAH:
 
 **Teorie** (4 hodiny)
