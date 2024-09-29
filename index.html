@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="cs">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python Akademie - část III. Základy internetu a tvorby webových stránek v HTML a CSS</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+        rel="stylesheet">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="static/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/styles/atom-one-dark.min.css">
+</head>
+
+<body>
+    <div class="container">
+        <nav class="sidebar">
+            <h2>Kapitoly</h2>
+            <h3>Web, HTML, CSS</h3>
+            <ul>
+                <li><a href="javascript:void(0);" onclick="loadMarkdown('chapters/chap1.md')">1. Úvod do internetu a webových technologií</a></li>
+                <li><a href="javascript:void(0);" onclick="loadMarkdown('chapters/chap2.md')">2. Základy HTML</a></li>
+                <li><a href="javascript:void(0);" onclick="loadMarkdown('chapters/chap3.md')">3. Základy CSS</a></li>
+                <li><a href="javascript:void(0);" onclick="loadMarkdown('chapters/chap4.md')">4. Projekt: Jednoduchá webová stránka</a></li>
+            </ul>
+            <h3>Flask</h3>
+            <ul>
+                <li><a href="javascript:void(0);" onclick="loadMarkdown('chapters/chap5.md')">5. Úvod do Flasku a první kroky</a></li>
+                <li><a href="javascript:void(0);" onclick="loadMarkdown('chapters/chap6.md')">6. Šablonování a práce s formuláři</a></li>
+                <li><a href="javascript:void(0);" onclick="loadMarkdown('chapters/chap7.md')">7. Práce s databází</a></li>
+                <li><a href="javascript:void(0);" onclick="loadMarkdown('chapters/chap8.md')">8. Finalizace projektu a nasazení</a></li>
+            </ul>
+        </nav>
+
+        <main class="content">
+            <h1>Python Akademie</h1>
+            <h1>Flask - tvorba webové aplikace s HTML, CSS a Pythonem</h1>
+            <div id="main-content" class="main-content">
+                <!-- Chapter content -->
+            </div>
+        </main>
+    </div>
+
+    <div class="footer">
+        <p>© 2024 Petra Číhalová</p>
+    </div>
+
+    <!-- Scripts -->
+     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="static/scripts.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/highlight.min.js"></script>
+    
+</body>
+
+</html>
