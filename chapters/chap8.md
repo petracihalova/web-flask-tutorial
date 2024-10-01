@@ -1,4 +1,4 @@
-## 8. Finalizace projektu a nasazení
+# 8. Finalizace projektu a nasazení
 ### OBSAH:
 
 **Teorie** (4 hodiny)
