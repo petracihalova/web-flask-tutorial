@@ -337,7 +337,7 @@ V tomto případě:
 - Border přidává `5px` tloušťky okraje.
 - Margin přidává `10px` prostoru kolem celého boxu.
 
-<img src="/images/box-model.png" alt="Box model" width="300">
+<img src="images/box-model.png" alt="Box model" width="300">
 
 
 ## 3.8 Rozložení stránky

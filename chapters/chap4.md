@@ -695,7 +695,7 @@ Samotné vložení widgetu je pak velmi jednoduché. Otevřete si stránku s [Go
 na tlačítko sdílet a zvolte možnost "Vložení mapy" (Embed a map). Vyberte si z nabízených možností a pak si zkopírujte HTML kód. Tento kód vložte na
 místo, kde chcete widget ve svém HTML dokumentu mít.
 
-<img src="/images/google_maps_widget.png" alt="Google Maps Widget" width="600">
+<img src="images/google_maps_widget.png" alt="Google Maps Widget" width="600">
 
 Výsledná sekce pak bude vypadat třeba takto:
 ```html
