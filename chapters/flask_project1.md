@@ -226,7 +226,7 @@ V projektu nastavíme layout pomocí Flexbox a Bootstrap ([dokumentace](https://
 # Shrnutí
 Po první části náš projekt vypadá takto:
 
-<img src="/images/flask_todo_app_version1.png" alt="Flask TODO aplikace ukázka 1" width="500">
+<img src="images/flask_todo_app_version1.png" alt="Flask TODO aplikace ukázka 1" width="500">
 
 Soubor `app.py`:
 ```python
