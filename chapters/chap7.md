@@ -1,7 +1,7 @@
 # 7. Práce s databází
 ### OBSAH:
 
-**Teorie** (4 hodiny)
+**Teorie**
 
 - Úvod do SQL a SQLite: Co je databáze, základní operace s SQL databázemi.
 	- Základní SQL příkazy (SELECT, INSERT, UPDATE, DELETE).
@@ -10,7 +10,11 @@
 	- Vytvoření modelů.
 	- Operace s databází (přidání, úprava, mazání dat).
 
-**Projekt** (3 hodiny)
+**Projekt**
 
 - Připojení aplikace k databázi: Úkoly budou ukládány do SQLite databáze.
 - CRUD operace pro úkoly: Vytvoření funkce pro přidávání, mazání a úpravu úkolů v databázi.
+
+
+***
+
