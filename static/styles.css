@@ -60,7 +60,7 @@ body {
     border: 1px solid #ccc;
     background-color: white;
     padding: 20px;
-    height: calc(100vh - 250px);
+    height: calc(100vh - 100px);
     overflow-y: auto;
 }
 
