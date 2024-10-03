@@ -15,7 +15,7 @@
 
 - Implementace formuláře pro přidávání úkolů: Formulář na hlavní stránce, který bude odesílat data pomocí POST metody.
 - Dynamické generování úkolů: Na základě přidaných úkolů se zobrazí seznam na stránce.
-- Ukládání a validace dat: Ověření, že formulář obsahuje všechny potřebné údaje, a zobrazení chybové hlášky, pokud nejsou.
+- Validace dat: Ověření, že formulář obsahuje všechny potřebné údaje, a zobrazení chybové hlášky, pokud nejsou.
 
 ***
 
