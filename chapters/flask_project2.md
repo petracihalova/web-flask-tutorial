@@ -308,6 +308,315 @@ Pokud do formulářových polí vložíme nesprávné údaje (nebo se pokusíme 
 
 Naopak pokud se pokusíme uložit úkol s názvem, který má méně než 3 znaky, objeví se chybová hláška, která nás informuje, co je špatně.
 
-My si teď ukážeme, jak si nastavit vlastní chybovou hlášku pro náš formulář.
+My si teď ukážeme, jak si nastavit vlastní chybovou hlášku pro náš formulář. Každý validátor má přednastavené výchozí zprávy, které ve správný okamžik zobrazí uživateli. V případě validátoru `DataRequired` je to `This field is required.`. Pokud se pokusíme odeslat formulář (uložit nový úkol) bez vyplněného pole pro název úkolu, zobrazí se ale zpráva `Please fill in this field.`. Pojďme si to vysvětlit.
 
-... work in progres ...
+Když Flask vytvoří formulář, který jsme si definovali pomocí třídy `TaskForm`, nastaví v HTML stránce tomuto formuláři vlastnosti podle našeho nastavení Flask-WTF formuláře. Např. validátor `Length(min=3, max=100)` způsobí, že se do formulářového pole pro název úkolu automaticky nastaví vlastnosti `maxlength="100" minlength="3"`. A validátor `DataRequired` zase přidá do pole vlastnost `required`. Když pak webový prohlížeč při odeslání prázdného formuláře kontroluje, zda byla tato nastavení splněna, zjistí, že pole je povinné (protože je v HTML nastaveno `required`) a zobrazí hlášku, která je pro tuto situaci nastavena = `Please fill in this field.`. Validace proběhla na úrovni prohlížeče.
+
+Pokud bychom chtěli, aby validace proběhla na úrovni serveru a použila se tak chybová hláška nastavená Flaskem, tak musíme ve formuláři nastavit vlastnost `novalidate`, která zabrání jeho validaci na úrovni prohlížeče. 
+```html
+<form method="POST" novalidate>
+```
+Dále je potřeba do HTML formuláře vložit kód, který chybovou hlášku zobrazí.
+```html
+<div class="form-group mb-3">
+    {{ formular.title(class="form-control") }}
+    {% for error in formular.title.errors %}
+        <div class="text-danger">{{ error }}</div>
+    {% endfor %}
+</div>
+```
+For cyklus zajistí, že se zobrazí všechny chybové hlášky, pokud by jich bylo více. Nyní již po odeslání prázdného formuláře uvidíme výchozí chybu `This field is required.`. Vlastní chybovou hlášku si můžeme nastavit přímo ve třídě pro formulář přidáním atributu `message=<zpráva>` do validátoru `DataRequired`.
+```python
+class TaskForm(FlaskForm):
+    title = StringField(
+        "Název úkolu",
+        validators=[DataRequired(message="Toto pole je povinné."), Length(min=3, max=100)],
+        render_kw={"placeholder": "Název úkolu"},
+    )
+    ...
+```
+
+## Přesun tabulky na vlastní stránku
+Pro zobrazení seznamu úkolů nám bohatě stačí jen jedna možnost - zobrazení úkolů pomocí elementu `ul` nebo v tabulce `table`. Abychom si nemuseli vybírat hned, přesuneme si tabulku s úkoly na vlastní stránku a tím si procvičíme práci se šablonami a vytvoření nové routy.
+
+Ve složce `tamplates` si vytvoříme soubor `base.html`, který bude sloužit jako základní layout se záhlavím, navigací a zápatím (bude se opakovat na každé stránce) a obsah budeme definovat v samostatných šablonách. Nejdříve zkopírujeme obsah souboru `index.html` do souboru `base.html` a v souboru `base.html` odstraníme kontejner s hlavním obsahem a místo něj dáme Jinja2 blok `{% block content %} {% endblock %}`, kterým dáváme najevo, že zde se bude vkládat obsah jednotlivých stránek.
+
+V souboru `index.html` necháme jen samotný obsah stránky a ten obalíme Jinja2 kódem tak, aby Flask věděl, že tento HTML dokument rozšiřuje dokument `base.html`. Bude to vypadat nějak takto:
+```html
+{% extends "base.html" %}
+
+{% block content %}
+<!-- Hlavní obsah -->
+<div>
+    <!-- Formulář pro přidání úkolu -->
+    <form method="POST" novalidate>
+        ...
+    </form>
+    <!-- Seznam úkolů -->
+    <h2 class="my-4">Seznam úkolů</h2>
+    <ul class="list-group">
+        ...
+    </ul>
+    <h2 class="my-4">Tabulka s úkoly</h2>
+    <table id="tasks" class="table">
+        ...
+    </table>
+</div>
+{% endblock %}
+```
+Po úpravách aktualizujte stránku v prohlížeči. Pokud se nic nestalo, tak je vše v pořádku. Stránka musí fungovat stále stejně jako předtím, ale nyní jí máme rozdělenu do dvou šablon. 
+
+Nyní si ve složce `templates` vytvořte nový soubor `table.html` a přesuňte do něj tabulku se seznamem úkolů.
+```html
+{% extends "base.html" %}
+
+{% block content %}
+<!-- Hlavní obsah -->
+<div>
+    <!-- Seznam úkolů v tabulce -->
+    <h2 class="my-4">Tabulka s úkoly</h2>
+    <table id="tasks" class="table">
+        ...
+    </table>
+</div>
+{% endblock %}
+```
+
+V souboru `app.py` přidáme novou routu pro zobrazení tabulky.
+```python
+@app.route("/table")
+def show_table():
+    return render_template("table.html", seznam_ukolu=tasks)
+```
+
+A upravíme navigaci tak, aby první položka se odkazovala na úvodní stránku `/` a druhá na novou routu `/table`.
+```html
+<a class="nav-link active" aria-current="page" href="/">Home</a>
+<a class="nav-link" href="/table">Tabulka</a>
+<a class="nav-link" href="#">Menu 3</a>
+<a class="nav-link disabled" aria-disabled="true">Menu 4</a>
+```
+
+# Shrnutí
+Po druhé části náš projekt vypadá takto:
+
+### Úvodní stránka:
+<img src="images/flask_todo_app_version2_home.png" alt="Flask TODO aplikace ukázka 2 stránka Home" width="500">
+
+### Stránka se seznamem úkolů v tabulce:
+<img src="images/flask_todo_app_version2_table.png" alt="Flask TODO aplikace ukázka 2 stránka Home" width="500">
+
+Struktura projektu:
+```bash
+/flask-todo-list
+│
+├── /static
+│   └── styles.css
+├── /templates
+│   ├── base.html
+│   ├── index.html
+│   └── table.html
+└── app.py
+```
+
+Soubor `app.py`:
+```python
+from flask import Flask, render_template, request, redirect, url_for
+from flask_wtf import FlaskForm
+from wtforms import StringField, TextAreaField, SelectField
+from wtforms.validators import DataRequired, Length
+
+app = Flask(__name__)
+app.secret_key = "your_secret_key"
+
+# Třída pro úkol
+class Task:
+    def __init__(self, title, details, priority):
+        self.title = title
+        self.details = details
+        self.priority = priority
+
+# Třída pro formulář
+class TaskForm(FlaskForm):
+    title = StringField(
+        "Název úkolu",
+        validators=[DataRequired(message="Toto pole je povinné."), Length(min=3, max=100)],
+        render_kw={"placeholder": "Název úkolu"},
+    )
+    details = TextAreaField(
+        "Podrobnosti", 
+        validators=[Length(max=1000)],
+        render_kw={"placeholder": "Podrobnosti"},
+    )
+    priority = SelectField(
+        "Priorita",
+        choices=[("high", "Vysoká priorita"), ("medium", "Střední priorita"), ("low", "Nízká priorita")],
+        default="medium",
+        validators=[DataRequired()],
+    )
+
+# Simulovaná databáze pro úkoly (seznam)
+tasks = []
+
+@app.route("/", methods=["GET", "POST"])
+def index():
+    form = TaskForm()
+    if form.validate_on_submit():
+        # Uložení úkolu, pokud je validace úspěšná
+        tasks.append(Task(form.title.data, form.details.data, form.priority.data))
+        return redirect(url_for("index"))
+    return render_template("index.html", seznam_ukolu=tasks, formular=form)
+
+@app.route("/table")
+def show_table():
+    return render_template("table.html", seznam_ukolu=tasks)
+
+if __name__ == "__main__":
+    app.run(debug=True)
+```
+
+
+Soubor `templates/base.html`:
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My ToDo List</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <!-- DataTables CSS -->
+     <link rel="stylesheet" href="//cdn.datatables.net/2.1.7/css/dataTables.dataTables.min.css">
+</head>
+
+<body>
+    <div class="mx-auto d-flex align-items-end flex-column min-vh-100" style="max-width: 800px;">
+        <div class="container p-2">
+            <!-- Záhlaví -->
+            <header class="my-4">
+                <h1 class="text-center">My TODO list</h1>
+            </header>
+
+            <!-- Horizontální menu -->
+            <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="#">Menu</a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false"
+                        aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                        <div class="navbar-nav">
+                            <a class="nav-link active" aria-current="page" href="/">Home</a>
+                            <a class="nav-link" href="/table">Tabulka</a>
+                            <a class="nav-link" href="#">Menu 3</a>
+                            <a class="nav-link disabled" aria-disabled="true">Menu 4</a>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+
+            {% block content %} {% endblock %}
+        </div>
+        <div class="container mt-auto p-2">
+            <!-- Zápatí -->
+            <footer class="bg-dark text-light py-3 text-center">
+                <p class="mb-0">&copy; 2024 My TODO List</p>
+            </footer>
+        </div>
+    </div>
+
+    <!-- Bootstrap skripty -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
+        integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy"
+        crossorigin="anonymous"></script>
+
+    <!-- DataTables scripty -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="//cdn.datatables.net/2.1.7/js/dataTables.min.js"></script>
+    <script>let table = new DataTable('#tasks');</script>
+</body>
+
+</html>
+```
+
+Soubor `templates/index.html`:
+```html
+{% extends "base.html" %}
+
+{% block content %}
+<!-- Hlavní obsah -->
+<div>
+    <!-- Formulář pro přidání úkolu -->
+    <form method="POST" novalidate>
+        {{ formular.hidden_tag() }}
+        <div class="form-group mb-3">
+            {{ formular.title(class="form-control") }}
+            {% for error in formular.title.errors %}
+            <div class="text-danger">{{ error }}</div>
+            {% endfor %}
+        </div>
+        <div class="form-group mb-3">
+            {{ formular.details(class="form-control") }}
+        </div>
+        <div class="form-group mb-3">
+            {{ formular.priority(class="form-control") }}
+        </div>
+        <button type="submit" class="btn btn-primary">Přidat úkol</button>
+    </form>
+    <!-- Seznam úkolů -->
+    <h2 class="my-4">Seznam úkolů</h2>
+    <ul class="list-group">
+        {% for ukol in seznam_ukolu %}
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            <div>
+                {% set priority_class = 'text-danger' if ukol.priority == 'high' else 'text-warning' if ukol.priority ==
+                'medium' else 'text-success' %}
+                <span class="{{priority_class}}">&#9673;</span>
+
+                <strong>{{ ukol.title }}</strong> - {{ ukol.details }}
+            </div>
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}
+```
+
+Soubor `templates/table.html`:
+```html
+{% extends "base.html" %}
+
+{% block content %}
+<!-- Hlavní obsah -->
+<div>
+    <!-- Seznam úkolů v tabulce -->
+    <h2 class="my-4">Tabulka s úkoly</h2>
+    <table id="tasks" class="table">
+        <thead>
+            <tr>
+                <th>Úkol</th>
+                <th>Detaily</th>
+                <th>Priorita</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for ukol in seznam_ukolu %}
+            <tr>
+                <td>{{ ukol.title }}</td>
+                <td>{{ ukol.details }}</td>
+                <td>{{ ukol.priority }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
+```
