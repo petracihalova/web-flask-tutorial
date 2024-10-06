@@ -337,7 +337,7 @@ V tomto případě:
 - Border přidává `5px` tloušťky okraje.
 - Margin přidává `10px` prostoru kolem celého boxu.
 
-<img src="images/box-model.png" alt="Box model" width="300">
+<img src="images/box-model.png" alt="Box model" width="500">
 
 
 ## 3.8 Rozložení stránky
@@ -420,7 +420,7 @@ Flexbox je jedním z nástrojů pro zarovnání a rozložení prvků. Umožňuje
 
 ### Grid
 Grid (mřížka) je další technika rozložení prvků. Umožňuje rozdělit stránku na mřížku a umístit prvky do jednotlivých buněk.
-- `display grid;` aktivuje grid pro kontejner
+- `display: grid;` aktivuje grid pro kontejner
 - `grid-template-columns` a `grid-template-rows` určují počet sloupců a řádků
 
 ```css

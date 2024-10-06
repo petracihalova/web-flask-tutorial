@@ -34,11 +34,13 @@ function loadMarkdown(chapter) {
                 });
             });
             
-            // Mark the corresponding navigation link as active
-            const chapterNumber = chapter.match(/(\d+)/)[0]; // Extract chapter number
+            // Mark the corresponding navigation link as active based on chapter path
             document.querySelectorAll('.sidebar ul li a').forEach((link) => {
                 link.classList.remove('active'); // Remove active class from all links
-                if (link.textContent.includes(chapterNumber)) {
+                
+                // Check if the href attribute of the link matches the chapter path
+                const href = link.getAttribute('onclick').match(/'([^']+)'/)[1]; // Extract href value from onclick attribute
+                if (href === chapter) {
                     link.classList.add('active'); // Add active class to the current link
                 }
             });

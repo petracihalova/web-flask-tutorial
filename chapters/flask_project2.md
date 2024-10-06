@@ -199,7 +199,7 @@ Dále si na konec HTML dokumentu (pod odkazy na Bootstrap skrtipy) vložíme odk
 ```
 První řádek načítá jQuery, což je knihovna JavaScriptu a DataTables ji potřebuje pro své fungování. jQuery poskytuje jednoduché API pro manipulaci s HTML dokumenty. Druhý řádek načítá samotnou knihovnu DataTables, která poskytuje všechny funkce spojené s vylepšením tabulek (stránkování, filtrování, vyhledávání, atd.). Poslední řádek obsahuje skript, který inicializuje novou DataTable, v tomto případě s `id = tasks`. Stejné id pak musíme vložit i do naší již existující HTML tabulky `<table id="tasks" class="table">`. Název pro tabulku si můžeme určit podle své fantazie, ale vždy musí být stejný na obou místech.
 
-<img src="images/datatable.png" alt="Ukázka DataTable" width="500">
+<img src="images/datatable.png" alt="Ukázka DataTable" width="800">
 
 
 ## Vytvoření třídy pro úkol
