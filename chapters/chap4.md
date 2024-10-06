@@ -3,7 +3,7 @@ Nyní si vytvoříme jednoduchou jednostránkovou webovou stránku (one page), k
 
 Výsledek si můžete prohlédnout [zde](https://petracihalova.github.io/grill_party_web/).
 
-Našim cílem je vytvořit jednoduchou pozvánku na podzimní grilování a tu pak zveřejnit na internetu.
+Našim cílem je vytvořit jednoduchou pozvánku na podzimní grilování a pak ji zveřejnit na internetu.
 
 ## 4.1 Základní struktura
 Na svém počítači si vytvořte složku s názvem `grill_party_web`. Stáhněte si soubory [zde](../files/source_files_v1.zip) a rozbalte je do složky. Složku `grill_party_web` si otevřete ve svém Visual Studio Code (VS Code). Dále si vytvořte zatím prázdné soubory `index.html` a `styles.css`. Ve svém projektu byste měli mít tuto strukturu souborů a složek.
@@ -89,9 +89,9 @@ Do záhlaví (`header`) si vložte element `h1` s textem "Pozvánka na podzimní
 Nad `h1` vložte obrázek ze složky `images` s názvem `background-header.jpg`.
 
 ### Jak vložit obrázek?
-Pro vložení obrázku do HTML stránky se používá tag <img>. Tento tag není párový, což znamená, že nemá žádný koncový tag.
+Pro vložení obrázku do HTML stránky se používá tag `<img>`. Tento tag není párový, což znamená, že nemá žádný koncový tag.
 
-Nejdůležitější atributy tagu <img> jsou:
+Nejdůležitější atributy tagu `<img>` jsou:
 
 - `src`: Cesta k souboru s obrázkem (může být relativní nebo absolutní).
 - `alt`: Alternativní text, který se zobrazí, pokud obrázek nelze načíst. Tento text je důležitý i pro přístupnost stránek, např. pro uživatele s poruchou zraku.

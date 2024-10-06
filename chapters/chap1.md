@@ -3,9 +3,7 @@
 Tato kapitola vás seznámí se základními pojmy, které se týkají internetu a webových technologií. Naučíte se, jak funguje internet, co jsou webové stránky a jakou roli hrají prohlížeče, servery, domény a URL. Vysvětlíme si základní technologické stavební kameny webu – HTML, CSS a JavaScript.
 
 ## 1.1 Co je internet a jak funguje
-Internet je globální síť propojených počítačů, která umožňuje sdílení informací mezi lidmi po celém světě. 
-
-Internet vznikl v 60. letech 20. století jako vojenský projekt pro sdílení informací. Postupem času se rozšířil do akademických institucí a nakonec se stal základem moderního komunikačního světa.
+Internet je globální síť propojených počítačů, která umožňuje sdílení informací mezi lidmi po celém světě. Internet vznikl v 60. letech 20. století jako vojenský projekt pro sdílení informací. Postupem času se rozšířil do akademických institucí a nakonec se stal základem moderního komunikačního světa.
 
 ### Jak funguje internet?
 - **IP adresy**: Každé zařízení na internetu má svou IP adresu, která funguje jako „adresa domů“.
@@ -71,11 +69,7 @@ Webové prohlížeče (např. Chrome, Firefox, Safari, Edge) jsou aplikace, kter
 - **Certifikáty:** Důvěryhodné weby používají SSL/TLS certifikáty, aby chránily osobní údaje.
 
 ## 1.5 HTTP, Request, Response
-HTTP (Hypertext Transfer Protocol) je internetový protokol, který slouží k přenosu dat mezi webovými prohlížeči a servery. 
-
-Aby webový prohlížeč mohl načíst webovou stránku, musí poslat "požadavek" (request) a poslat ho na příslušný server. 
-
-Server požadavek zpracuje a vrátí "odpověď" (response). Obsahem je často webová stránka v jazyce HTML, ale v odpovědi mohou být i jiná data (obrázek).
+HTTP (Hypertext Transfer Protocol) je internetový protokol, který slouží k přenosu dat mezi webovými prohlížeči a servery. Aby webový prohlížeč mohl načíst webovou stránku, musí poslat "požadavek" (request) a poslat ho na příslušný server. Server požadavek zpracuje a vrátí "odpověď" (response). Obsahem je často webová stránka v jazyce HTML, ale v odpovědi mohou být i jiná data (obrázek).
 
 Při komunikaci se používají HTTP metody. Nejčastější je metoda **GET**, která slouží k získání / načtení dat ze serveru. Někdy je ale potřeba poslat i požadavky, které změní data na serveru (přihlášení uživatele, nákup v e-shopu, poslání zprávy do chatu ...). Pro tyto účely se používají další HTML metody jako je **POST**, která posílá informace na server s cílem něco změnit nebo nastavit nebo **DELETE**, která něco smaže. Více o HTML a jeho metodách v [dokumentaci](https://www.rfc-editor.org/rfc/rfc9110.html#name-methods).
 
