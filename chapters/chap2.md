@@ -292,7 +292,7 @@ Komentáře jsou v HTML velmi užitečné pro větší přehlednost a čitelnost
 - Vytvořte si složku `prvni_html_stranka` a v této složce soubor `index.html`.
 - Zkopírujte si následující HTML stránku do souboru `index.html` a soubor otevřete ve webovém prohlížeči. 
 - Zkuste si postupně přidat elementy z předchozí kapitoly, upravujte elementy nebo je mažte a sledute, jak se mění výsledná stránka.
-- Stáhněte si libovolný obrázek do složky `prvni_html_stranka` a přejmenujte ho na `obrazek.jpg`. Můžete použít obrázek [zde](../images/books.jpg).
+- Stáhněte si libovolný obrázek do složky `prvni_html_stranka` a přejmenujte ho na `obrazek.jpg`. Můžete použít obrázek [zde](images/books.jpg).
 
 ```html
 <!DOCTYPE html>
