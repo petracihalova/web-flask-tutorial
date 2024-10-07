@@ -430,3 +430,9 @@ curl http://127.0.0.1:5000/
 ```
 
 [UnitTest](https://docs.python.org/3/library/unittest.html) - Flask také nabízí framework pro psaní testů v Pythonu. Pomocí knihovny unittest můžete psát a spouštět testy přímo v kódu aplikace.
+
+## 5.5 Další zdroje
+- [Flask dokumentace](https://flask.palletsprojects.com/en/3.0.x/)
+- [Geeks For Geeks Flask tutorial](https://www.geeksforgeeks.org/flask-tutorial/)
+- [Real Python Flask Tutorial](https://realpython.com/tutorials/flask/)
+  

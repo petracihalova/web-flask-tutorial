@@ -296,3 +296,26 @@ Hodnota tohoto tajného klíče může být jakákoliv hodnota, pro naše potře
 
 ### Příklad
 **Flask ukázka 8** je ukázka použití formuláře s Flask-WTF validací.
+
+### Přehled základních formulářových polí a validátorů knihovny WTforms
+Knihovna WTforms obsahuje definice pro mnoho různých typů polí, zde je seznam těch nejvíce používaných:
+- **TextField**: reprezentuje HTML element `<input type = 'text'>`, je to tedy pole pro vložení textu
+- **BooleanField**: reprezentuje HTML element `<input type = 'checkbox'>`, jedná se o zaškrtávací políčko
+- **IntegerField**: funguje jako TextField, ale vynucuje vložení pouze celých čísel
+- **TextAreaField**: reprezentuje HTML element `<textarea>` a používá se pro víceřádkový textový vstup
+- **PasswordField**: reprezentuje HTML element `<input type = 'password'>`, kdy zadávané znaky nejsou zobrazeny
+- **SelectField**: reprezentuje HTML element `<select>` a slouží pro výběr hodnoty ze seznamu hodnot
+
+Knihovna WTforms také obsahuje řadu validátorů, mezi nejvíce používané patří:
+- **DataRequired**: pro kontrolu polí, kde je povinně vyžadována hodnota
+- **EqualTo**: porovnává hodnotu dvou polí
+- **Email**: kontroluje, zda je zadaná hodnota email
+- **Lenght**: umožňuje definovat minimální a maximální délku (počet znaků) textu
+- **NumberRange**: kontroluje, zda zadané číslo odpovídá definovanému rozpětí
+- **URL**: kontroluje, zda zadaná hodnota je URL
+
+## 6.5 Další zdroje
+- [w3schools HTML forms tutorial](https://www.w3schools.com/html/html_forms.asp)
+- [Jinja Dokumentace](https://jinja.palletsprojects.com/en/3.0.x/)
+- [Geeks for Geeks Jinja templates tutorial](https://www.geeksforgeeks.org/getting-started-with-jinja-template/)
+  
