@@ -62,7 +62,7 @@ def add_data():
     save_data(data)
     return jsonify(data)
 ```
-Data jsou trvale uchována i při restartu počítače a uložené soubory jsou snadno čitelné a editovatelné. Nevýhodnou může být to, že při větším objemu dat může být zápis i čtení do souboru pomalý a zpomalovat tak běh samotné aplikace. Také tento přístup není vhodný pro paralelní přístup k datům, neboť soubory mohou být při čtení zamčené.
+Data jsou trvale uchována i při restartu počítače a uložené soubory jsou snadno čitelné a editovatelné. Nevýhodnou může být to, že při větším objemu dat může být zápis i čtení do souboru pomalé a to ovlivní i rychlost samotné aplikace. Také tento přístup není vhodný pro paralelní přístup k datům, neboť soubory mohou být při čtení zamčené.
 
 ### Ukládání dat do databáze
 Jakmile aplikace začne zpracovávat větší množství dat nebo je potřeba zpráacovávat složitější dotazy (např. filtrování, třídění), je vhodné začít používat databázi. [SQLite](https://www.sqlite.org/) je skvělá volba pro menší projekty, protože je lehká, nevyžaduje samostatný server a ukládá data do souboru. Flask má také k práci s databázemi velmi užitečnou knihovnu [Flask-SQLAlchemy](https://flask-sqlalchemy.palletsprojects.com/en/3.1.x/).
@@ -167,7 +167,7 @@ REST (Representational State Transfer) je architektonický styl, který definuje
 ### OpenApi specifikace
 V případě REST API je zvykem vytvořit **OpenAPI specifikaci**. Jedná se o standardizovaný formát pro popis REST API. Umožňuje vývojářům definovat všechny aspekty svého API, jako jsou jeho cesty (endpoints), metody, parametry, odpovědi, bezpečnostní mechanismy a další. Tento popis je strojově čitelný a slouží jako "dokumentace" API, kterou lze snadno sdílet a generovat nástroje, jako je Swagger, které umožňují testování, validaci a vizualizaci API.
 
-Hlavní vlastnosti OpenAPI Specifikace:
+Klíčové vlastnosti OpenAPI Specifikace:
 - **Definice cest**: Popisuje všechny dostupné cesty API (např. `/books`, `/users`).
 - **HTTP metody**: Každá cesta má definovány metody jako GET, POST, PUT, DELETE, atd.
 - **Parametry a body requests**: Specifikace zahrnuje parametry URL, query parametry, body requests a další údaje, které API vyžaduje.
@@ -182,7 +182,7 @@ OpenApi specifikace může být napsána ve formátu JSON nebo YAML. Oba formát
 [Swagger Editor](https://editor-next.swagger.io) je webový nástroj, který umožňuje vývojářům interaktivně vytvářet, prohlížet a validovat OpenAPI specifikace v reálném čase. Jedná se o vizuální editor, který zobrazuje OpenAPI specifikace napsané v YAML nebo JSON formátu na jedné straně a jejich vizualizovanou dokumentaci na straně druhé. Je to skvělý nástroj pro návrh a dokumentaci REST API. Editor ihned upozorňuje na chyby v syntaxi nebo špatně strukturované části API specifikace a také umožňuje okamžité zasílání požadavků (requests) a sledování odpovědí (responses). Swagger Editor je velmi užitečný nástroj pro všechny, kteří chtěji navrhovat strukturu API, generovat dokumentaci, testovat API nebo sdílet tuto specifikaci s dalšími týmy.
 
 ### Povolení CORS ve Flasku
-Při používání Swagger Editoru a posílání požadavků z něj se může objevit chyba `Failed to fetch.`, která může být způsobena omezením CORS (Cross-Origin-Resource Sharing). Když je požadavek odeslán ze Swagger Editoru a server (Flask aplikace) neumožňuje CORS, prohlížeč, ve kterém Swagger Editor běží, tyto požadavky blokuje. Stejné požadavky lze odeslat pomocí cURL, protože tento nástroj není tímto omezením ovlivněn.
+Při použití Swagger Editoru a posílání požadavků z něj se může objevit chyba `Failed to fetch.`, která může být způsobena omezením CORS (Cross-Origin-Resource Sharing). Když je požadavek odeslán ze Swagger Editoru a server (Flask aplikace) neumožňuje CORS, prohlížeč, ve kterém Swagger Editor běží, tyto požadavky blokuje. Stejné požadavky lze odeslat pomocí cURL, protože tento nástroj není tímto omezením ovlivněn.
 
 Řešením je povolit CORS ve Flasku pomocí knihovny `flask-cors`. Tato knihovna zajistí, že tvé API bude povolovat požadavky z jiných domén (například ze Swagger Editoru).
 

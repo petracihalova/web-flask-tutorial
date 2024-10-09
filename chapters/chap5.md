@@ -351,7 +351,7 @@ Existují i další HTML metody jako HEAD, PUT, DELETE, PATCH a další, v naše
 ### Příklad
 **Flask ukázka 3** je aplikace, která ukazuje použití metody GET a POST v jedné funkci.
 
-### Geerování URL
+### Generování URL
 Ve Flasku existuje metoda `url_for()`, která je klíčovým nástrojem pro generování URL adres založených na názvech funkcí (tzv. view funkcí) spíše než na pevných URL cestách. To zajišťuje flexibilitu a snadnou údržbu aplikací.
 
 Tato metoda umožňuje dynamicky generovat URL adresy pro funkce definované v aplikaci. Namísto pevného zadání cesty (což může být problematické při změnách struktury URL), se použije název funkce. Flask poté vytvoří správnou URL adresu na základě zadané view funkce a argumentů.

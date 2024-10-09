@@ -34,7 +34,7 @@ if __name__ == '__main__':
 ```
 Nicméně vracet HTML dokumenty tímto způsobem je nepraktické a proto ve Flasku používáme šablony. Tyto šablony se ukládají do složky `templates`, kde Flask automaticky vyhledává soubory s HTML kódem. Pomocí funkce Flasku `render_template()` se šablony vykreslí a pošlou uživateli. Funkci můžete předat data, která jsou pak dostupná v HTML dokumentu.
 ```python
-from flask import Flask
+from flask import Flask, render_template
 app = Flask(__name__)
 
 @app.route('/')

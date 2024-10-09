@@ -66,7 +66,7 @@ def add_task():
     return redirect(url_for("index"))
 
 if __name__ == '__main__':
-    app.run(debug=True, port=5678)
+    app.run(debug=True)
 ```
 
 Aby vše správně fungovalo, musíme ještě ve formuláře v HTML dokumentu přidat do atributu `action` správnou URL, kam budou data odeslána při odeslání formuláře. 
