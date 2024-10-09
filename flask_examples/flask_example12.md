@@ -1,9 +1,9 @@
 # Flask aplikace, která ukládá data do dvou tabulek SQLite databáze.
-Aplikace využívá databázové modely pro autora knihy `Author` a pro knihu `Book` a umožňuje přidávat autory a knihy do databáze a zobrazovat je na webové stránce. Při prvním spuštění aplikace bude vytvořena složka `instance` a uvnitř soubor `books.db` s databází. Pomocí nástroje DB Browser for SQLite je možné sledovat, jak jsou data v databázi vytvářena, editována a mazána.
+Aplikace využívá databázové modely pro autora knihy `Author` a pro knihu `Book` a umožňuje přidávat autory a knihy do databáze a zobrazovat je na webové stránce. Při prvním spuštění aplikace bude vytvořena složka `instance` a uvnitř soubor `books_authors.db` s databází. Pomocí nástroje DB Browser for SQLite je možné sledovat, jak jsou data v databázi vytvářena, editována a mazána.
 
-Kromě frameworku Flask příklad používá knihovnu `Flask-SQLAlchemy`, kterou je nutné nainstalovat do virtuálního prostředí.
+Kromě frameworku `Flask` příklad používá knihovnu `Flask-SQLAlchemy`, kterou je nutné nainstalovat do virtuálního prostředí.
 ```bash
-pip install Flask-SQLAlchemy
+pip install Flask Flask-SQLAlchemy
 ```
 
 Před samotným spuštěním aplikace pomocí `python app.py` (ve virtuálním prostředí) je možné naplnit databázi daty (tzv. seeding) pomocí příkazu:

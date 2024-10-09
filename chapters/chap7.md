@@ -5,7 +5,7 @@
 
 - Možnosti ukládání dat ve Flask projektu: in-memory, JSON, databáze.
 - Úvod do API, REST API a související témata.
-    - OpenApi speccifikace.
+    - OpenAPI specifikace.
     - Swagger Editor.
     - YAML.
 - Úvod do SQL a SQLite: Co je databáze, základní operace s SQL databázemi.
@@ -495,3 +495,5 @@ def delete_user(user_id):
 ```
 V tomto příkladu je uživatel odstraněn z databáze na základě jeho ID.
 
+### Příklad
+**Flask ukázka 13** je ukázka Flask aplikace s ukázkou všech základních databázových operací.
