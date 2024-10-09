@@ -218,4 +218,4 @@ Soubor `templates/book_edit.html`:
 ```
 
 ### Ukázka finální aplikace
-<img src="./images/flask_example13_book_manager.png" alt="Ukázka aplikace Book Manager" width="500">
+<img src="./images/flask_example13_book_manager.png" alt="Ukázka aplikace Book Manager" width="1000">

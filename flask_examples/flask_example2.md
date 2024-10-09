@@ -31,5 +31,5 @@ def show_subpath(subpath):
     return f"Subpath: {subpath}"
 
 if __name__ == '__main__':
-    app.run(debug=True, port=5555)
+    app.run(debug=True)
 ```
