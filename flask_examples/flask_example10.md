@@ -6,9 +6,9 @@ Jednoduchá ukázka REST API ve Flasku se základními CRUD operacemi nad kolekc
 - `PUT /api/books/<id>` aktualizuje data konkrétní knihy.
 - `DELETE /api/books/<id>` smaže knihu podle ID.
 
-Kromě frameworku Flask příklad používá knihovnu `flask-cors`, kterou je nutné nainstalovat do virtuálního prostředí.
+Kromě frameworku `Flask` příklad používá knihovnu `flask-cors`, kterou je nutné nainstalovat do virtuálního prostředí.
 ```bash
-pip install flask-cors
+pip install Flask flask-cors
 ```
 
 Struktura projektu:
