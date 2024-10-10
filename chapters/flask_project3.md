@@ -448,3 +448,378 @@ Do navigace přidáme odkaz na seznam dokončených úkolů:
 <a class="nav-link" href="{{ url_for('show_completed') }}">Dokončené</a>
 <a class="nav-link disabled" aria-disabled="true">Menu 4</a>
 ```
+
+
+# Shrnutí
+Po třetí části náš projekt vypadá takto:
+
+### Úvodní stránka:
+<img src="images/flask_todo_app_version3_home.png" alt="Flask TODO aplikace ukázka 3 stránka Home" width="500">
+
+### Stránka se seznamem dokončených úkolů:
+<img src="images/flask_todo_app_version3_completed.png" alt="Flask TODO aplikace ukázka 3 stránka Dokončené" width="500">
+
+Struktura projektu:
+```bash
+/flask-todo-list
+│
+├── /instance
+│   └── tasks.db
+├── /templates
+│   ├── base.html
+│   ├── completed.html
+│   ├── edit.html
+│   ├── index.html
+│   └── table.html
+├── app.py
+├── form.py
+└── models.py
+```
+
+Soubor `app.py`:
+```python
+from flask import Flask, redirect, render_template, url_for
+
+from form import TaskForm
+from models import Task, db
+
+app = Flask(__name__)
+app.secret_key = "your_secret_key"
+
+# Nastavení databáze
+app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///tasks.db"  # Cesta k databázi
+app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
+db.init_app(app)
+
+
+@app.route("/", methods=["GET", "POST"])
+def index():
+    form = TaskForm()
+    if form.validate_on_submit():
+        new_task = Task(title=form.title.data, details=form.details.data, priority=form.priority.data)
+        db.session.add(new_task)
+        db.session.commit()
+        return redirect(url_for("index"))
+
+    # Získání pouze nedokončených úkolů
+    tasks = Task.query.filter_by(completed=False).all()  
+    return render_template("index.html", seznam_ukolu=tasks, formular=form)
+
+
+@app.route("/table")
+def show_table():
+    tasks = Task.query.all()
+    return render_template("table.html", seznam_ukolu=tasks)
+
+
+@app.route("/delete/<int:task_id>")
+def delete_task(task_id):
+    task_to_delete = Task.query.get(task_id)  # Načtení úkolu podle ID
+    if task_to_delete:
+        db.session.delete(task_to_delete)  # Smazání úkolu
+        db.session.commit()  # Uložení změn
+    return redirect(url_for("index"))  # Přesměrování na hlavní stránku
+
+
+@app.route("/edit/<int:task_id>", methods=["GET", "POST"])
+def edit_task(task_id):
+    task_to_edit = Task.query.get(task_id)  # Načtení úkolu podle ID
+    if not task_to_edit:
+        return redirect(
+            url_for("index")
+        )  # Pokud úkol neexistuje, přesměrujeme na hlavní stránku
+
+    form = TaskForm(obj=task_to_edit)  # Inicializace formuláře s existujícími daty
+
+    if form.validate_on_submit():
+        # Aktualizace úkolu
+        task_to_edit.title = form.title.data
+        task_to_edit.details = form.details.data
+        task_to_edit.priority = form.priority.data
+        db.session.commit()  # Uložení změn
+        return redirect(url_for("index"))
+
+    return render_template(
+        "edit.html", form=form, task=task_to_edit
+    )  # Zobrazit šablonu pro editaci
+
+
+@app.route("/complete/<int:task_id>")
+def complete_task(task_id):
+    task = Task.query.get_or_404(task_id)
+    task.completed = True
+    db.session.commit()
+    return redirect(url_for("index"))
+
+
+@app.route("/completed")
+def show_completed():
+    completed_tasks = Task.query.filter_by(completed=True).all()
+    return render_template("completed.html", seznam_ukolu=completed_tasks)
+
+
+@app.route("/uncomplete/<int:task_id>")
+def uncomplete_task(task_id):
+    task = Task.query.get_or_404(task_id)
+    task.completed = False
+    db.session.commit()
+    return redirect(url_for("show_completed"))
+
+
+if __name__ == "__main__":
+    with app.app_context():
+        db.create_all()
+    app.run(debug=True)
+```
+
+Soubor `form.py`:
+```python
+from flask_wtf import FlaskForm
+from wtforms import SelectField, StringField, TextAreaField
+from wtforms.validators import DataRequired, Length
+
+
+class TaskForm(FlaskForm):
+    title = StringField(
+        "Název úkolu",
+        validators=[DataRequired(message="Toto pole je povinné."), Length(min=3, max=100)],
+        render_kw={"placeholder": "Název úkolu"},
+    )
+    details = TextAreaField(
+        "Podrobnosti", 
+        validators=[Length(max=1000)],
+        render_kw={"placeholder": "Podrobnosti"},
+    )
+    priority = SelectField(
+        "Priorita",
+        choices=[("high", "Vysoká priorita"), ("medium", "Střední priorita"), ("low", "Nízká priorita")],
+        default="medium",
+        validators=[DataRequired()],
+    )
+```
+
+Soubor `models.py`:
+```python
+from flask_sqlalchemy import SQLAlchemy
+
+db = SQLAlchemy()
+
+class Task(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.String(100), nullable=False)
+    details = db.Column(db.Text, nullable=True)
+    priority = db.Column(db.String(10), nullable=False)
+    completed = db.Column(db.Boolean, default=False)  # Přidání sloupce pro dokončení
+
+    def __repr__(self):
+        return f"<Task {self.title}>"
+```
+
+Soubor `templates/base.html`:
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My ToDo List</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <!-- DataTables CSS -->
+     <link rel="stylesheet" href="//cdn.datatables.net/2.1.7/css/dataTables.dataTables.min.css">
+</head>
+
+<body>
+    <div class="mx-auto d-flex align-items-end flex-column min-vh-100" style="max-width: 800px;">
+        <div class="container p-2">
+            <!-- Záhlaví -->
+            <header class="my-4">
+                <h1 class="text-center">My TODO list</h1>
+            </header>
+
+            <!-- Horizontální menu -->
+            <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="#">Menu</a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false"
+                        aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                        <div class="navbar-nav">
+                            <a class="nav-link active" aria-current="page" href="{{ url_for('index') }}">Home</a>
+                            <a class="nav-link" href="{{ url_for('show_table') }}">Tabulka</a>
+                            <a class="nav-link" href="{{ url_for('show_completed') }}">Dokončené</a>
+                            <a class="nav-link disabled" aria-disabled="true">Menu 4</a>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+
+            {% block content %} {% endblock %}
+        </div>
+        <div class="container mt-auto p-2">
+            <!-- Zápatí -->
+            <footer class="bg-dark text-light py-3 text-center">
+                <p class="mb-0">&copy; 2024 My TODO List</p>
+            </footer>
+        </div>
+    </div>
+
+    <!-- Bootstrap skripty -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
+        integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy"
+        crossorigin="anonymous"></script>
+
+    <!-- DataTables scripty -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="//cdn.datatables.net/2.1.7/js/dataTables.min.js"></script>
+    <script>let table = new DataTable('#tasks');</script>
+</body>
+
+</html>
+```
+
+Soubor `templates/completed.html`:
+```html
+{% extends "base.html" %}
+
+{% block content %}
+<div>
+    <ul class="list-group">
+        {% for ukol in seznam_ukolu %}
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            <div>
+                {% set priority_class = 'text-danger' if ukol.priority == 'high' else 'text-warning' if ukol.priority ==
+                'medium' else 'text-success' %}
+                <span class="{{priority_class}}">&#9673;</span>
+                <strong>{{ ukol.title }}</strong> - {{ ukol.details }}
+            </div>
+            <div>
+                <a href="{{ url_for('delete_task', task_id=ukol.id) }}" class="btn btn-danger">Smazat</a>
+                <a href="{{ url_for('uncomplete_task', task_id=ukol.id) }}" class="btn btn-secondary">Označit jako
+                    nedokončený</a>
+            </div>
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+
+{% endblock %}
+```
+
+Soubor `templates/edit.html`:
+```html
+{% extends "base.html" %}
+
+{% block content %}
+<div>
+    <h1>Upravit úkol</h1>
+    <form method="POST">
+        {{ form.hidden_tag() }}
+        <div class="form-group">
+            {{ form.title.label }}<br>
+            {{ form.title(class="form-control") }}<br>
+            {% for error in form.title.errors %}
+            <div class="text-danger">{{ error }}</div>
+            {% endfor %}
+        </div>
+        <div class="form-group">
+            {{ form.details.label }}<br>
+            {{ form.details(class="form-control") }}<br>
+        </div>
+        <div class="form-group">
+            {{ form.priority.label }}<br>
+            {{ form.priority(class="form-control") }}<br>
+        </div>
+        <button type="submit" class="btn btn-primary">Uložit změny</button>
+    </form>
+    <a href="{{ url_for('index') }}" class="btn btn-secondary mt-2">Zpět na hlavní stránku</a>
+</div>
+
+{% endblock %}
+```
+
+Soubor `templates/index.html`:
+```html
+{% extends "base.html" %}
+
+{% block content %}
+<!-- Hlavní obsah -->
+<div>
+    <!-- Formulář pro přidání úkolu -->
+    <form method="POST" novalidate>
+        {{ formular.hidden_tag() }}
+        <div class="form-group mb-3">
+            {{ formular.title(class="form-control") }}
+            {% for error in formular.title.errors %}
+            <div class="text-danger">{{ error }}</div>
+            {% endfor %}
+        </div>
+        <div class="form-group mb-3">
+            {{ formular.details(class="form-control") }}
+        </div>
+        <div class="form-group mb-3">
+            {{ formular.priority(class="form-control") }}
+        </div>
+        <button type="submit" class="btn btn-primary">Přidat úkol</button>
+    </form>
+    <!-- Seznam úkolů -->
+    <h2 class="my-4">Seznam úkolů</h2>
+    <ul class="list-group">
+        {% for ukol in seznam_ukolu %}
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            <div>
+                {% set priority_class = 'text-danger' if ukol.priority == 'high' else 'text-warning' if ukol.priority ==
+                'medium' else 'text-success' %}
+                <span class="{{priority_class}}">&#9673;</span>
+                <strong>{{ ukol.title }}</strong> - {{ ukol.details }}
+            </div>
+            <div>
+                <a href="{{ url_for('complete_task', task_id=ukol.id) }}" class="btn btn-success">Hotovo</a>
+                <a href="{{ url_for('edit_task', task_id=ukol.id) }}" class="btn btn-warning">Upravit</a>
+                <a href="{{ url_for('delete_task', task_id=ukol.id) }}" class="btn btn-danger">Smazat</a>
+            </div>
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}
+```
+
+Soubor `templates/table.html`:
+```html
+{% extends "base.html" %}
+
+{% block content %}
+<!-- Hlavní obsah -->
+<div>
+    <!-- Seznam úkolů v tabulce -->
+    <h2 class="my-4">Tabulka s úkoly</h2>
+    <table id="tasks" class="table">
+        <thead>
+            <tr>
+                <th>Úkol</th>
+                <th>Detaily</th>
+                <th>Priorita</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for ukol in seznam_ukolu %}
+            <tr>
+                <td>{{ ukol.title }}</td>
+                <td>{{ ukol.details }}</td>
+                <td>{{ ukol.priority }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
+```
