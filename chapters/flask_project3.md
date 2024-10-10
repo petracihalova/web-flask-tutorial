@@ -276,7 +276,7 @@ def delete_task(task_id):
 </ul>
 ```
 
-## Editace dat
+## Editace úkolů
 Poslední operace, která nám z CRUD zbývá, je editace existujícího záznamu. Podobně jako v předchozím případě budeme potřebovat vytvořit novou routu a také přidat tlačítko pro úpravu úkolu. Po kliknutí na tlačítko se zobrazí nová stránka, kde bude možné upravit všechna pole (název úkolu, podrobnosti, prioritu) a po kliknutí na tlačítko změny uložit do databáze.
 
 Přidání cesty pro úpravu úkolu:
