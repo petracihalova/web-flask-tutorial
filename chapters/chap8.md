@@ -3,15 +3,155 @@
 
 **Teorie**
 
-- Pokročilé téma: Autentizace uživatelů (volitelné): Implementace základní autentizace pomocí Flask-Login nebo jiného nástroje.
-- Flask Blueprints: Jak rozdělit aplikaci do modulů pro lepší správu kódu.
-- Nasazení aplikace: Jak nasadit Flask aplikaci na platformu jako je Heroku nebo GitHub Pages pro statické weby.
+- Autentizace uživatelů: Implementace základní autentizace pomocí Flask-Login nebo jiného nástroje.
+- Nasazení aplikace: Jak nasadit Flask aplikaci na platformu PythonAnywhere.
+- Micro úvod do Git a Github: Uložení projektu na GitHub.
 
 **Projekt**
 
-- Finalizace todo aplikace: Účastníci dokončí aplikaci, zkontrolují všechny funkcionality a opraví případné chyby.
-- Nasazení aplikace na Heroku: Pokud bude čas, účastníci nasadí svoji aplikaci online.
-
+- Přidání autentizace uživatelů: Login page, Register page.
+- Finalizace projektu "My TODO list": Dokončení aplikace, kontrola všech funkcionalit a opravení chyb.
+- Nasazení aplikace na PythonAnywhere.com.
 
 ***
 
+## 8.1 Autentizace uživatelů
+Autentizace je proces ověření identity uživatele. Ve webových aplikacích je důležitá k ochraně citlivých dat a umožnění přístupu pouze autorizovaným uživatelům. Ve Flasku je možné implementovat autentizaci pomocí několika nástrojů, z nichž jeden z nejpoužívanějších je knihovna `Flask-Login`. Tato knihovna usnadňuje správu přihlášení uživatelů, ověření přihlášení na chráněných stránkách a správu relací (sessions).
+
+### Hlavní principy autentizace:
+- **Registrace uživatele**: Uživatel vytvoří účet zadáním uživatelského jména a hesla.
+- **Přihlášení uživatele**: Po registraci uživatel zadá své přihlašovací údaje, které jsou ověřeny proti databázi.
+- **Uchovávání přihlašovacího stavu**: Po úspěšném přihlášení je uživateli přiřazena **session**, která uchovává jeho stav přihlášení.
+- **Odhlášení uživatele**: Uživatel se může kdykoliv odhlásit a session se ukončí.
+- **Chráněné stránky**: Některé části aplikace mohou být přístupné pouze přihlášeným uživatelům.
+
+### Autentizace s Flask-Login
+[Flask-Login](https://flask-login.readthedocs.io/en/latest/) je rozšíření pro Flask, které slouží ke správě relací a autentizaci uživatelů v aplikacích. Usnadňuje implementaci přihlašování, odhlašování a ochranu přístupu k chráněným stránkám, aniž by vývojář musel řešit detaily správy uživatelských relací.
+
+Balíček lze nainstalovat pomocí:
+```bash
+pip install flask-login
+```
+
+**Funkce a vlastnosti Flask-Login:**
+- **Správa relací**: Flask-Login automaticky sleduje, zda je uživatel přihlášen, a spravuje jeho session. Po úspěšném přihlášení uživatel dostane session cookie, která je kontrolována při každém následujícím požadavku.
+- **Dekorátory**: Poskytuje užitečný dekorátor `@login_required`, který umožňuje chránit určité části aplikace tak, že jsou dostupné pouze pro přihlášené uživatele. Pokud se nepřihlášený uživatel pokusí přistoupit na chráněnou stránku, bude přesměrován na přihlašovací stránku.
+- **Správa uživatelských relací**: Flask-Login dokáže načíst uživatele podle ID z databáze prostřednictvím funkce `user_loader`, což umožňuje načítat informace o uživateli automaticky při každém požadavku.
+- **Ochrana proti session fixation attacks**: Podporuje ochranu proti tzv. session fixation attacks tím, že umožňuje snadnou rotaci session ID, například po přihlášení nebo změně citlivých informací.
+- **Podpora "remember me"**: Nabízí funkci trvalého přihlášení, která umožňuje uživateli zůstat přihlášený i po zavření prohlížeče (pomocí dlouhodobých cookies).
+- **Odhlášení**: Flask-Login poskytuje jednoduchou funkci `logout_user()`, která ukončí relaci a odhlásí uživatele.
+
+**Hlavní výhody Flask-Login:**
+- **Jednoduchost**: Snadno se integruje a poskytuje jednoduché API pro správu autentizace.
+- **Bezpečnost**: Podporuje standardní bezpečnostní postupy, jako je hashování hesel a správa session.
+- **Flexibilita**: Umožňuje snadno rozšířit autentizaci o vlastní pravidla, jako je trvalé přihlášení nebo ochrana specifických stránek.
+
+Flask-Login je užitečný nástroj pro každého, kdo potřebuje ve své aplikaci autentizaci uživatelů bez nutnosti implementace složité správy relací od základu.
+
+### Příklad
+**Flask ukázka 14** je ukázka použití Flask-Login.
+
+### Příklad
+**Flask ukázka 15** je další ukázka Flask-Login, tentokráte s použitím funkce pro uložení hesla v nečitelné podobě.
+
+### Hashování hesla
+Hashování hesel je zásadní technika v oblasti zabezpečení, která se používá k ochraně uživatelských hesel. Vzhledem k nárůstu kybernetických útoků a úniků dat je důležité, aby vývojáři implementovali správné metody pro uchovávání hesel.
+
+**Proč používat hashování hesel**
+
+- **Ochrana před úniky dat**: Pokud útočníci získají přístup k databázi, kde jsou hesla uložena jako prostý text, mohou okamžitě využít tato hesla pro neautorizovaný přístup. Hashováním hesel se zabezpečí, že i v případě úniku dat zůstane pro útočníky obtížné získat původní hesla.
+- **Jednosměrnost**: Hashování je jednosměrný proces, což znamená, že původní heslo nelze z hashované hodnoty zpětně získat. To zvyšuje úroveň ochrany, protože i když je hash hesla kompromitován, nelze jej použít k odhalení původního hesla.
+- **Zabezpečení proti útokům**: Správně implementované hashování zahrnuje další prvky, jako je použití soli (randomizovaného řetězce přidávaného k heslu před hashováním). To znemožňuje útočníkům použít předem vypočítané hashovací tabulky (rainbow tables) pro dešifrování hesel.
+
+Hashování hesel zahrnuje dva hlavní kroky:
+
+**1. Generování hashovaného hesla:**
+
+Uživatel zadá své heslo při registraci. Funkce `set_password` využívá knihovnu jako je `Werkzeug`, která používá bezpečné hashovací algoritmy (např. PBKDF2) k vytvoření hashované hodnoty. Tento hash se uloží do databáze místo původního hesla.
+```python
+    def set_password(self, password):
+        """Hash hesla pomocí Werkzeug"""
+        self.password_hash = generate_password_hash(password)
+```
+
+**2. Ověření hesla:**
+Když se uživatel pokusí přihlásit, zadané heslo se hashne stejným způsobem jako při registraci. Funkce `check_password` porovná hash hesla uloženého v databázi s novým hashem vytvořeným z uživatelského vstupu. Pokud se shodují, uživatel je autentizován.
+```python
+    def check_password(self, password):
+        """Ověření hesla"""
+        return check_password_hash(self.password_hash, password)
+```
+
+Tímto způsobem hashování hesel zajišťuje, že i v případě úniku databáze zůstávají hesla chráněná a nečitelné pro útočníky. Vzhledem k těmto zásadám a praktikám by každý vývojář měl brát hashování hesel jako standardní praxi pro zabezpečení uživatelských dat.
+
+### Autorizace s Flask-Login
+Autentizace a autorizace jsou dva klíčové koncepty v oblasti zabezpečení informací, které slouží k ochraně systémů a dat. Přestože jsou často zaměňovány, mají různé funkce:
+
+- **Autentizace** se zaměřuje na ověření identity uživatele. Jde o proces, při kterém systém potvrzuje, že uživatel je tím, kým tvrdí, že je. To se obvykle provádí prostřednictvím uživatelského jména a hesla.
+- **Autorizace** na druhé straně určuje, jaká práva a oprávnění má autentizovaný uživatel. Jinými slovy, pokud je uživatel úspěšně autentizován, autorizace stanovuje, co může a co nemůže dělat v rámci systému.
+
+Když se uživatel přihlásí do webové aplikace, systém nejprve ověří jeho identitu (autentizace) a poté zjistí, zda má právo přístup k určitém zdrojům nebo funkcím (autorizace).
+
+Pro implementaci autorizace ve Flask aplikaci můžeme využít knihovnu `Flask-Login`, která zajišťuje autentizaci, a můžeme přidat vlastní logiku pro autorizaci. Zde je jednoduchý příklad:
+
+**Definice rolí uživatelů**: Můžeme mít uživatele s různými rolemi (např. admin a běžný uživatel). Pro tento příklad přidáme do modelu `User` atribut `role`.
+```python
+from flask_sqlalchemy import SQLAlchemy
+from flask_login import UserMixin
+
+db = SQLAlchemy()
+
+class User(db.Model, UserMixin):
+    id = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.String(150), unique=True, nullable=False)
+    password_hash = db.Column(db.String(256), nullable=False)
+    role = db.Column(db.String(50), nullable=False, default='user')  # Role uživatele
+```
+
+**Ochrana endpointů na základě rolí**: Můžeme vytvořit dekorátor pro ochranu určitých stránek na základě rolí uživatelů.
+```python
+from functools import wraps
+from flask import request, redirect, url_for, flash
+
+def role_required(role):
+    def wrapper(f):
+        @wraps(f)
+        def decorated_function(*args, **kwargs):
+            if current_user.role != role:
+                flash("You do not have permission to access this page.", "danger")
+                return redirect(url_for("dashboard"))
+            return f(*args, **kwargs)
+        return decorated_function
+    return wrapper
+```
+
+**Použití dekorátoru**: Nyní můžeme použít tento dekorátor k ochraně konkrétním stránek. Například, pokud máme stránku pro administrátorský dashboard, můžeme ji chránit takto:
+```python
+@app.route("/admin")
+@login_required
+@role_required('admin')
+def admin_panel():
+    return "Welcome to the admin panel!"
+```
+
+**Registrace a přihlašování**: Při registraci uživatelů můžeme přiřadit roli (např. při registraci admina nebo běžného uživatele) a uložit ji do databáze.
+```python
+@app.route("/register", methods=["GET", "POST"])
+def register():
+    if request.method == "POST":
+        username = request.form["username"]
+        password = request.form["password"]
+        role = request.form.get("role", "user")  # Výchozí role je "user"
+        new_user = User(username=username, role=role)
+        new_user.set_password(password)
+        db.session.add(new_user)
+        db.session.commit()
+        flash("Registration successful!", "success")
+        return redirect(url_for("login"))
+    return render_template("register.html")
+```
+
+Autorizace uživatelů je klíčová pro zabezpečení aplikací, protože zajišťuje, že pouze oprávnění uživatelé mají přístup k citlivým informacím a funkcím. Implementace autorizace ve Flasku je relativně jednoduchá díky kombinaci autentizace a vlastních rolí. S využitím `Flask-Login` a dekorátorů lze efektivně spravovat přístup k různým částem aplikace.
+
+### Příklad
+**Flask ukázka 16** je ukázka použití Flask-Login pro autentizaci i autorizaci.
