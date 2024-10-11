@@ -219,3 +219,54 @@ V ukázce používáme Bootstrap komponenty pro alerty (výstražné boxy) k zob
 
 Další ukázky použití Flash Messages najdete také v předchozích ukázkách 13, 14, 15, a 16.
 
+## 8.4 Nasazení aplikace na PythonAnywhere
+[PythonAnywhere.com](https://www.pythonanywhere.com) je populární cloudová služba, která umožňuje hostovat python weobvé aplikace vytvořené např. ve Flasku nebo Djangu.
+
+### Klíčové vlastnosti PythonAnywhere:
+- **Vývoj v prohlížeči**: Poskytuje online editor, takže můžete psát, spouštět a testovat Python kód přímo v prohlížeči.
+- **Podpora webových aplikací**: Je zde možné nasadit své Flask, Django nebo jiné Python webové aplikace bez složité konfigurace.
+- **Bezplatná a placená verze**: PythonAnywhere nabízí i bezplatný účet, což je ideální pro menší aplikace nebo projekty v rámci studia. Placené plány poskytují více zdrojů a lepší podporu.
+- **Přístup k terminálu**: Nabízí přístup k online terminálu, kde lze pracovat s Pythonem a dalšími nástroji, instalovat knihovny pomocí pip a spravovat svůj projekt.
+- **Naplánované úlohy (Scheduled tasks)**: Lze nastavit pravidelné spouštění Python skriptů.
+- **Podpora MySQL, PostgreSQL, SQLite**: Poskytuje podporu pro databáze nebo i možnost připojit se na externí databázi.
+
+### Nasazení Flask aplikace s SQLite databází
+Na stránce https://www.pythonanywhere.com vyberte možnost "Start running Python online in less than a minute".
+
+<img src="images/python-anywhere-1.png" alt="Nasazení Flask aplikace na PythonAnywhere - krok 1" width="1000">
+
+Vytvořte si "Beginner account" a přihlaste se.
+
+<img src="images/python-anywhere-2.png" alt="Nasazení Flask aplikace na PythonAnywhere - krok 2" width="1000">
+
+Otevřete si stránku s dashboardem.
+
+<img src="images/python-anywhere-3.png" alt="Nasazení Flask aplikace na PythonAnywhere - krok 3" width="1000">
+
+Na stránce "Web" (viz horní menu) klikněte na "Add a new app". V prvním okně jen přejděte na další krok kliknutím na "Next". V druhém okně vyberte možnost "Flask".
+
+<img src="images/python-anywhere-4.png" alt="Nasazení Flask aplikace na PythonAnywhere - krok 4" width="1000">
+
+Dále vyberte nejvyšší možnou verzi Pythonu a v dalším okně nastavte cestu k hlavnímu Flask souboru.
+```bash
+/home/<username>/mysite/app.py
+```
+Kde místo `<username>` bude přihlašovací jméno, které jste uvedli při registraci.
+
+<img src="images/python-anywhere-5.png" alt="Nasazení Flask aplikace na PythonAnywhere - krok 5" width="1000">
+
+Všechno potvrďte a na konci se dostanete na stránku s přehledm o vaší nové (již zveřejněné) Flask aplikaci, kterou si můžete i prohlédnout na adrese `<username>.pythonanywhere.com`, kde místo `<username>` bude opět vaše přihlašovací jméno.
+
+<img src="images/python-anywhere-6.png" alt="Nasazení Flask aplikace na PythonAnywhere - krok 6" width="1000">
+
+Gratuluji, právě jste zveřejnili vaši první Flask aplikaci na platformě Python Anywhere. Zatím je to ale prázdná aplikace, která má jednu stránku s `Hello from Flask!`. Nyní si nahradíme tuto aplikaci našim kódem. V hlavním menu se přepněte na stránku `Files`. V levé části se přepněte do složky `/mysite` a nahrejte sem všechny soubory Flask aplikace. 
+
+<img src="images/python-anywhere-7.png" alt="Nasazení Flask aplikace na PythonAnywhere - krok 7" width="1000">
+
+Vraťte se na záložku "Web" a reloadujte aplikaci.
+
+<img src="images/python-anywhere-8.png" alt="Nasazení Flask aplikace na PythonAnywhere - krok 8" width="1000">
+
+Otevřete si vaši aplikaci na adrese `<username>.pythonanywhere.com`, kde místo `<username>` bude opět vaše přihlašovací jméno a zkontrolujte, že vše funguje, tak jak má. 
+
+Gratuluji, právě jste deploynuli Flask aplikaci na platform Python Anywhere.
