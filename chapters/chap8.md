@@ -84,7 +84,7 @@ Když se uživatel pokusí přihlásit, zadané heslo se hashne stejným způsob
 
 Tímto způsobem hashování hesel zajišťuje, že i v případě úniku databáze zůstávají hesla chráněná a nečitelné pro útočníky. Vzhledem k těmto zásadám a praktikám by každý vývojář měl brát hashování hesel jako standardní praxi pro zabezpečení uživatelských dat.
 
-### Autorizace s Flask-Login
+## 8.2 Autorizace uživatelů
 Autentizace a autorizace jsou dva klíčové koncepty v oblasti zabezpečení informací, které slouží k ochraně systémů a dat. Přestože jsou často zaměňovány, mají různé funkce:
 
 - **Autentizace** se zaměřuje na ověření identity uživatele. Jde o proces, při kterém systém potvrzuje, že uživatel je tím, kým tvrdí, že je. To se obvykle provádí prostřednictvím uživatelského jména a hesla.
@@ -155,3 +155,67 @@ Autorizace uživatelů je klíčová pro zabezpečení aplikací, protože zaji�
 
 ### Příklad
 **Flask ukázka 16** je ukázka použití Flask-Login pro autentizaci i autorizaci.
+
+
+## 8.3 Flash messages
+[Flash Messages](https://flask.palletsprojects.com/en/2.3.x/patterns/flashing/) jsou způsob, jakým aplikace mohou dočasně zobrazovat zprávy uživatelům. Typickými příklady použití jsou:
+
+- Zprávy o úspěšné registraci nebo přihlášení.
+- Upozornění na chyby, jako je neplatná přihlašovací informace.
+- Jakékoli další notifikace, které jsou uživateli zobrazeny na krátkou dobu.
+
+Flash Messages jsou užitečné zejména proto, že umožňují komunikaci mezi serverem a uživatelem bez nutnosti dlouhodobě ukládat tyto zprávy (například v databázi). Zpráva se zobrazí jen jednou a po obnovení stránky zmizí.
+
+Flask poskytuje jednoduchý způsob, jak s flash zprávami pracovat. K tomu slouží funkce `flash()` a `get_flashed_messages()`. Flash Messages jsou součástí Flasku, takže není nutné nic nového instalovat.
+
+### Použití Flash Messages ve Flasku
+Nejdříve je potřeba ve Flask aplikaci nakonfigurovat tajný klíč (secret key), který jsme už potřebovali i dříve pro formuláře z knihovny `Flask-WTF`.
+```python
+from flask import Flask, flash, redirect, render_template, session, url_for
+
+app = Flask(__name__)
+app.secret_key = 't0p_s3cr3t_k3y'
+```
+
+Dále použijeme funkci `flash()` k vytvoření nové zprávy. Může se jednat o jednoduchý text a lze přidat i druh zprávy (success, error, warning).
+```python
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    if request.method == 'POST':
+        username = request.form['username']
+        password = request.form['password']
+        # Předstíraná validace uživatele
+        if username == 'admin' and password == 'password':
+            flash('Úspěšně přihlášeno!', 'success')
+            return redirect(url_for('index'))
+        else:
+            flash('Neplatné uživatelské jméno nebo heslo.', 'error')
+            return redirect(url_for('login'))
+    return render_template('login.html')
+```
+Pokud se uživatel úspěšně přihlásí, zobrazí se flash zpráva o úspěchu. Pokud přihlášení selže, zobrazí se chyba.
+
+Flash messages se zobrazují v šabloně pomocí funkce `get_flashed_messages()`.
+```html
+{% with messages = get_flashed_messages(with_categories=True) %}
+    {% if messages %}
+        <div>
+            {% for category, message in messages %}
+                <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+                    {{ message }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+{% endwith %}
+```
+Tento kód vytvoří Bootstrap alert boxy na základě kategorie zprávy. Zprávy lze zavřít pomocí tlačítka.
+
+V ukázce používáme Bootstrap komponenty pro alerty (výstražné boxy) k zobrazení flash messages. Druh zpráv jako `success`, `error`, `warning` se přirozeně mapují na styly Bootstrapu jako `alert-success`, `alert-danger`, a `alert-warning`.
+
+### Příklad
+**Flask ukázka 17** je ukázka použití Flash Messages.
+
+Další ukázky použití Flash Messages najdete také v předchozích ukázkách 13, 14, 15, a 16.
+
