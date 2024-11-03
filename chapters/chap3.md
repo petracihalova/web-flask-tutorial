@@ -417,6 +417,7 @@ Flexbox je jedním z nástrojů pro zarovnání a rozložení prvků. Umožňuje
   flex-direction: column; /* prvky budou v sloupci */
 }
 ```
+Detailní přehled o možnotech použití Flexboxu najdete např. [zde](https://css-tricks.com/snippets/css/a-guide-to-flexbox/).
 
 ### Grid
 Grid (mřížka) je další technika rozložení prvků. Umožňuje rozdělit stránku na mřížku a umístit prvky do jednotlivých buněk.
@@ -449,6 +450,8 @@ Ukázka rozložení pomocí gridu:
 ```
 
 Tento kód vytvoří třísloupcové rozložení s mezerou 10px mezi jednotlivými prvky.
+
+Detailní přehled o možnotech použití Grid najdete např. [zde](https://css-tricks.com/snippets/css/complete-guide-grid/).
 
 ### Responsivita pomocí media queries
 Pro responzivní design, tedy aby web vypadal dobře na různých zařízeních, se používají media queries. Ty umožňují aplikovat CSS pravidla na základě velikosti obrazovky nebo jiných podmínek.
