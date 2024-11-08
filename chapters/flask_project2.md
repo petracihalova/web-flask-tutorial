@@ -41,7 +41,7 @@ def add_task():
 
     return redirect(url_for("index"))
 ```
-Jako metodu pro tuto routu nastavíme POST, protože budeme odesílat data z formuláře. `request` nám pomůže získat data z formuláře a uložit je do námi definovaných proměnných. Získaná data z formuláře uložíme jako n-tici do seznamu `tasks`. Funkce `redirect` přesměruje uživatele na jinou stránku po odeslání formuláře. `url_for("index")` vrátí URL pro funkci `index`, která vykresluje hlavní stránku s úkoly. Po přidání nového úkolu jsou hodnoty zadané do formuláře zpracovány a uživatel je přesměrován zpět na hlavní stránku. Po všech úpravách bude soubor `app.py` vypadat takto:
+Jako metodu pro routu nastavíme POST, protože budeme odesílat data z formuláře. Objekt `request` nám pomůže získat data z formuláře a uložit je do námi definovaných proměnných. Získaná data z formuláře uložíme jako n-tici do seznamu `tasks`. Funkce `redirect` přesměruje uživatele na úvodní stránku po odeslání formuláře. Po přidání nového úkolu jsou hodnoty zadané do formuláře zpracovány a uživatel je přesměrován zpět na hlavní stránku. Po všech úpravách bude soubor `app.py` vypadat takto:
 ```python
 from flask import Flask, render_template, request, redirect, url_for
 
@@ -69,7 +69,7 @@ if __name__ == '__main__':
     app.run(debug=True)
 ```
 
-Aby vše správně fungovalo, musíme ještě ve formuláře v HTML dokumentu přidat do atributu `action` správnou URL, kam budou data odeslána při odeslání formuláře. 
+Aby vše správně fungovalo, je nutné ještě ve formuláře v HTML dokumentu přidat do atributu `action` správnou URL, kam budou data odeslána při odeslání formuláře. 
 ```html
 <form action="/add" method="POST">
 ```
@@ -93,9 +93,9 @@ Tímto jsme si "poslali" náš seznam do proměnné `seznam_ukolu`, která je ny
 {{ seznam_ukolu }}
 ```
 
-Zobrazení zadaných úkolů zatím není příliš pěkné, ale to si za malou chvilku upravíme. Nezapomínejte, že úkoly si ukládáme do paměti počítače do proměnné `tasks`, takže když restartujeme náš Flask server, o všechna data přijdeme.
+Zobrazení zadaných úkolů zatím není příliš pěkné, ale to si za malou chvilku upravíme. Mějte na paměti, že úkoly si ukládáme do paměti počítače, takže když restartujeme Flask server, o všechna data přijdeme.
 
-Jedna z možností, jak úkoly zobrazit se pomocí HTML seznamu. Základem bude element `ul` a každá položka seznamu `li` bude dynamicky generována pomocí Jinja2.
+Jedna z možností, jak úkoly zobrazit je pomocí HTML seznamu. Základem bude element `ul` a každá položka seznamu `li` bude dynamicky generována pomocí Jinja2.
 ```html
 <!-- Seznam úkolů -->
 <h2>Seznam úkolů</h2>
@@ -109,7 +109,7 @@ Jedna z možností, jak úkoly zobrazit se pomocí HTML seznamu. Základem bude 
     {% endfor %}
 </ul>
 ```
-Místo textového vyjádření priority můžeme přidat znak nebo ikonku a prioritu definovat barvou. Existuje milion způsobů, jak to udělat a my si ukážeme jen jeden, záleží jen na vaší fantazii a preferencích.
+Místo textového vyjádření priority můžeme přidat znak nebo ikonku a prioritu definovat barvou. Existuje několik způsobů, jak to udělat a my si ukážeme jen jeden, záleží jen na vaší fantazii a preferencích.
 ```html
 <!-- Seznam úkolů -->
 <h2>Seznam úkolů</h2>
@@ -154,7 +154,7 @@ V tomto případě je použita rozhodovací struktura, kterou můžete najít po
 vysledek = hodnota_A if podmínka else hodnota_B
 ```
 
-## Zobrazení seznamu vložených úkolů pomocí `table`
+## BONUS Zobrazení seznamu vložených úkolů pomocí `table`
 Druhý způsob, který si ukážeme, je vložení seznamu úkolů jako tabulky.
 ```html
 <h2>Tabulka s úkoly</h2>
@@ -203,7 +203,7 @@ První řádek načítá jQuery, což je knihovna JavaScriptu a DataTables ji po
 
 
 ## Vytvoření třídy pro úkol
-Aby se nám s jednotlivými úkoly lépe pracovalo, bylo by lepší odkazovat se na jejich vlastnosti (titul, detaily, prioritu) pomocí pojmenovaných atributů a ne pomocí indexů (`ukol[0]`). Na začátku souboru `app.py` si pro tyto účely vytvoříme třídu `Task`.
+Aby se nám s jednotlivými úkoly lépe pracovalo, bylo by lepší odkazovat se na jejich vlastnosti (titul, detaily, prioritu) pomocí pojmenovaných atributů a ne pomocí indexů. Na začátku souboru `app.py` si pro tyto účely vytvoříme třídu `Task`.
 ```python
 # Třída pro úkol
 class Task:
@@ -217,7 +217,7 @@ A upravíme si kód, kde úkol ukládáme do naší provizorní databáze = do s
 tasks.append(Task(title, details, priority))
 ```
 
-V souboru `index.html` upravíme odkazy na atributy úkolů (např. z `ukol[0]` na `ukol.title`) a to jak v seznamu úkolů, tak i v tabulce s úkoly. Zde ukázka kódu pro seznam úkolů po změně.
+V souboru `index.html` upravíme odkazy na atributy úkolů (např. z `ukol[0]` na `ukol.title`) a to jak v seznamu úkolů, tak případně i v tabulce s úkoly. Zde ukázka kódu pro seznam úkolů po změně.
 ```html
 <ul class="list-group">
     {% for ukol in seznam_ukolu %}
@@ -234,7 +234,7 @@ V souboru `index.html` upravíme odkazy na atributy úkolů (např. z `ukol[0]` 
 ```
 
 ## Flask-WTF a validace formuláře
-Jako další krok přidáme do našeho projektu formulář pomocí knihovny Flask-WTF. V souboru `app.py` si vytvoříme formulář jako novou třídu a definujeme všechna naše pole.
+Jako další krok přidáme do našeho projektu formulář pomocí knihovny Flask-WTF. V souboru `app.py` si vytvoříme formulář jako novou třídu a definujeme všechna pole.
 ```python
 from flask_wtf import FlaskForm
 from wtforms import StringField, TextAreaField, SelectField
@@ -260,7 +260,7 @@ Pro název úkolu si zvolíme standarní textové pole `StringField`. Pro toto p
 
 Pole pro podrobnosti úkolu bude typu `TextAreaField` a nebude povinné (validátor `DataRequired` zde nebude), ale nastavíme zde maximální délku vloženého textu na 1000 znaků.
 
-Poslední pole pro výběr priority úkolu bude typu `SelectField` a pomocí atributu `choices` definujeme seznam položek, které budou v tomto dropdownu k dispozici. První hodnota ve dvojici je identifikátor (klíč), se kterým budeme pracovat v kódu. Druhá hodnota ve dvojici je popisek, který se bude zobrazovat na naší webové stránce. Pomocí atributu `default` si můžeme určit výchozí hodnotu. Pokud tento atribut není definován, je automaticky výchozí hodnotou první hodnota ze seznamu možných hodnot. Také toto pole nastavíme jako povinné.
+Poslední pole pro výběr priority úkolu bude typu `SelectField` a pomocí atributu `choices` definujeme seznam položek, které budou v tomto poli k dispozici. První hodnota ve dvojici je identifikátor (klíč), se kterým budeme pracovat v kódu. Druhá hodnota ve dvojici je popisek, který se bude zobrazovat na naší webové stránce. Pomocí atributu `default` si můžeme určit výchozí hodnotu. Pokud tento atribut není definován, je automaticky výchozí hodnotou první hodnota ze seznamu možných hodnot. Také toto pole nastavíme jako povinné.
 
 Po vložení formuláře pomocí Flask-WTF již nebudeme potřebovat funkci `add_task()` a routu `/add` a zpracování formuláře proběhne v rámci funkce `index()`.
 ```python
@@ -303,7 +303,7 @@ title = StringField(
 )
 ```
 
-## Chybové zprávy
+## BONUS Chybové zprávy
 Pokud do formulářových polí vložíme nesprávné údaje (nebo se pokusíme taková data vložit) a máme nastaveny správně validátory, formulář nám nedovolí data vložit. Např. validátor `Length(min=3, max=100)` zajistí, že do pole pro název úkolu nelze vložit text delší než 100 znaků. Pokud na klávesnici napíšeme 101. znak, tak se do názvu už nepřidá. Pokud se pokusíme do pole vložit text delší než 100 znaků např. pomocí CTRL+C a CTRL+V, tak se vloží pouze prvních 100 znaků a zbytek se zahodí.
 
 Naopak pokud se pokusíme uložit úkol s názvem, který má méně než 3 znaky, objeví se chybová hláška, která nás informuje, co je špatně.
@@ -336,7 +336,7 @@ class TaskForm(FlaskForm):
     ...
 ```
 
-## Přesun tabulky na vlastní stránku
+## BONUS Přesun tabulky na vlastní stránku
 Pro zobrazení seznamu úkolů nám bohatě stačí jen jedna možnost - zobrazení úkolů pomocí elementu `ul` nebo v tabulce `table`. Abychom si nemuseli vybírat hned, přesuneme si tabulku s úkoly na vlastní stránku a tím si procvičíme práci se šablonami a vytvoření nové routy.
 
 Ve složce `tamplates` si vytvoříme soubor `base.html`, který bude sloužit jako základní layout se záhlavím, navigací a zápatím (bude se opakovat na každé stránce) a obsah budeme definovat v samostatných šablonách. Nejdříve zkopírujeme obsah souboru `index.html` do souboru `base.html` a v souboru `base.html` odstraníme kontejner s hlavním obsahem a místo něj dáme Jinja2 blok `{% block content %} {% endblock %}`, kterým dáváme najevo, že zde se bude vkládat obsah jednotlivých stránek.
@@ -396,6 +396,7 @@ A upravíme navigaci tak, aby první položka se odkazovala na úvodní stránku
 <a class="nav-link" href="#">Menu 3</a>
 <a class="nav-link disabled" aria-disabled="true">Menu 4</a>
 ```
+
 
 # Shrnutí
 Po druhé části náš projekt vypadá takto:

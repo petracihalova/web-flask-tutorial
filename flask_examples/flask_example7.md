@@ -1,5 +1,5 @@
 # Flask aplikace s formulářem a jednoduchou validací
-Jednoduchá Flask aplikace s formulářem pro získání jména a přijmení a s jednoduchou validací.
+Ukázka Flask aplikace s formulářem pro získání jména a přijmení a s jednoduchou validací.
 
 Struktura projektu:
 ```bash

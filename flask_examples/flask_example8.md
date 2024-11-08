@@ -1,5 +1,5 @@
 # Flask aplikace s formulářem a Flask-WTF validací
-Jednoduchá Flask aplikace s formulářem pro získání jména a přijmení a s validací pomocí Flask-WTF knihovny.
+Ukázka Flask aplikace s formulářem pro získání jména a přijmení a s validací pomocí Flask-WTF knihovny.
 
 Struktura projektu:
 ```bash
