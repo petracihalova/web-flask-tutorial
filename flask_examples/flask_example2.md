@@ -1,5 +1,5 @@
 # Flask aplikace s proměnnými v routách
-Ukázka jednoduché Flask aplikace s několika routami, které obsahují proměnné různého datového typu.
+Ukázka Flask aplikace s několika routami, které obsahují proměnné různého datového typu.
 
 ```python
 from flask import Flask, jsonify

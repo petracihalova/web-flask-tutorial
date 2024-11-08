@@ -1,7 +1,5 @@
 # Flask aplikace s GET a POST metodami v jedné funkci
-Ukázka jednoduché Flask aplikace s routou, která má definováno použití jak GET, tak i POST metody. Jedná se jednoduchý formulář, který
-obsahuje jen pole pro jméno. Když přistoupíš na `/contract`, zavolá se metoda GET a zobrazí se formulář. Pro odeslání formuláře se použije metoda
-POST a vrátí se zpráva s poděkováním.
+Ukázka Flask aplikace s routou, která má definováno použití jak GET, tak i POST metody. Jedná se jednoduchý formulář, který obsahuje jen pole pro jméno. Když uživatel otevře URL `/contract`, zavolá se metoda GET a zobrazí se formulář. Pro odeslání formuláře se použije metoda POST a vrátí se zpráva s poděkováním.
 
 Struktura projektu
 ```bash

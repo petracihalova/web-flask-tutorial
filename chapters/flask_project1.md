@@ -1,28 +1,24 @@
 # Projekt: My TODO list část 1
-- Vytvoření základní struktury aplikace
+- Vytvoření základní struktury aplikace.
 - Přidání první HTML stránky se seznamem úkoů a první routy pro její zobrazení.
-- Přidání stylů pomocí frameworku Bootstrap
+- Přidání stylů pomocí frameworku Bootstrap.
 
 ## Základní struktura aplikace "TODO list"
-Pro projekt si vytvořte novou složku s názvem `flask-todo-list` a uvnitř si vytvořte tuto základní strukturu:
+Pro projekt si vytvořte novou složku s názvem `flask-todo-list` a uvnitř si vytvořte tuto základní strukturu. Soubory budou zatím prázdné.
 ```bash
 /flask-todo-list
 │
-├── /static
-│   └── styles.css
 ├── /templates
 │   └── index.html
 └── app.py
 ```
-Soubory budou zatím prázdné.
 
 ## Virtuální prostředí a instalace Flasku
 Otevřete si složku `flask-todo-list` v terminálu a vytvořte si nové virtuální prostředí. Prostředí si aktivujte a nainstalujte si do něj Flask.
 
 
 ## Spuštění Flask aplikace
-Do soubouru `app.py` si vložte základní kód pro spuštění Flasku s routou `/`, která bude volat funkci `index()`. Funkce zatím vrací jednoduchou
-textovou zprávu.
+Do soubouru `app.py` si vložte základní kód pro spuštění Flasku s routou `/`, která bude volat funkci `index()`. Funkce zatím vrací jednoduchou textovou zprávu. Aplikaci si spusťte, otevřete si okno prohlížeče a zkontrolujte výsledek.
 ```python
 from flask import Flask
 
@@ -35,10 +31,9 @@ def index():
 if __name__ == '__main__':
     app.run(debug=True)
 ```
-Aplikaci si spusťe, otevřete si okno prohlížeče a zkontrolujte výsledek.
 
 ## Zobrazení seznamu úkolů
-Jako první si vytvoříme HMTL stránku `index.html`, která bude obsahovat základní rozložení naší stránky - záhlaví, jednoduché horizontální menu se třemi položkami, tělo s obsahem a zápatí. Jako obsah budeme vypisovat seznam našich úkolů, které budou zatím tzv. hardcoded, tedy pevně zapsány (zatím nebudou dynamicky generovány nebo načítány z databáze).
+Jako první si vytvořte HMTL stránku `index.html`, která bude obsahovat základní rozložení stránky - záhlaví, jednoduché horizontální menu se třemi položkami, tělo s obsahem a zápatí. Samotný obsah bude tvořit seznam úkolů (element `ul`), které budou zatím tzv. hardcoded, tedy pevně zapsány (zatím nebudou dynamicky generovány nebo načítány z databáze).
 
 Výsledný HTML dokument může vypadat třeba takto:
 ```html
@@ -86,10 +81,10 @@ Výsledný HTML dokument může vypadat třeba takto:
 </body>
 </html>
 ```
-Nyní otevřete okno prohlížeče a zkontrolujte, že vše funguje, jak má? Ne? Ano máte pravdu, změna zatím není vidět, protože musíme ještě říct Flasku, aby naši novou HTML stránku zobrazil. Musíme tedy udělat úpravu souboru `app.py`.
+Nyní otevřete okno prohlížeče a zkontrolujte, že vše funguje, jak má? Ne? Ano máte pravdu, změna zatím není vidět, protože je nutné říct Flasku, aby novou HTML stránku zobrazil. Musíme tedy udělat úpravu souboru `app.py`.
 
-Pro tento úkol použijeme metodu `render_template()`, které jako argument předáme název HTML dokumentu, tedy `index.html` ve formě řetězce (stringu). Flask očekává, že tento soubor najde ve složce `templates`. Naše funkce `index()` teď bude vracet místo jednoduchého textu `render_template("index.html")`.
-Tato metoda je součástí knihovny Flask a proto je také nutné jí importovat. O šablonách (templates) a práci s nimi se budeme detailně učit později.
+Pro tento úkol použijeme metodu `render_template()`, které jako argument předáme název HTML dokumentu, tedy `index.html` ve formě řetězce. Flask očekává, že soubor najde ve složce `templates`. Funkce `index()` teď bude vracet místo jednoduchého textu `render_template("index.html")`.
+Metoda je součástí knihovny Flask a proto je nutné jí importovat. O šablonách (templates) a práci s nimi se budeme detailně učit později.
 
 Kód v souboru `app.py` bude vypadat takto:
 ```python
@@ -104,14 +99,14 @@ def index():
 if __name__ == '__main__':
     app.run(debug=True)
 ```
-Nyní znovu načti stránku v prohlížeči a již by mělo být vše v pořádku.
+Nyní znovu načtěte stránku v prohlížeči a již by mělo být vše v pořádku.
 
 ## Přidání stylů
 Náš projekt zatím vypadá velmi jednoduše. Pojďme si ho teď vizuálně vylepšit. Jedna možnost je postupně přidávat stylování tak, jak jsme si to ukazovali v části o tvorbě webu. Druhá možnost je použít populární framework [Bootstrap](https://getbootstrap.com), který poskytuje již hotové komponenty a stylovací třídy.
 
 ### Bootstrap
-Nejdříve je potřeba přidat odkazy na Bootstrap CSS a JS scripty podle [návodu](https://getbootstrap.com/docs/5.3/getting-started/introduction/).
-Do `head` přidáme odkaz na CSS:
+Nejdříve si přidejte odkazy na Bootstrap CSS a JS scripty podle [návodu](https://getbootstrap.com/docs/5.3/getting-started/introduction/).
+Do `head` přidejte odkaz na CSS:
 ```html
 <head>
     <meta charset="UTF-8">
@@ -137,10 +132,10 @@ A na konec `body` ještě před uzavírací tag pak odkazy na JS scripty:
 
 </html>
 ```
-Opět zkontrolujte výsledek v prohlížeči. Všimněte si, že už těch došlo ke změně písma - to se aplikovaly první Boostrap styly.
+Opět zkontrolujte výsledek v prohlížeči. Všimněte si, že už nyní došlo ke změně písma - to se aplikovaly výchozí Boostrap styly.
 
 ### Containers
-Nyní si nastavíme výchozí styly pro naše dva hlavní kontejnery `div`, které máme v `body`. Použijeme výchozí třídu `class="container"` ([dokumentace](https://getbootstrap.com/docs/5.3/layout/containers/)).
+Nyní si nastavíme styly pro kontejnery `div`, které máme v `body`. Použijeme výchozí třídu `class="container"` ([dokumentace](https://getbootstrap.com/docs/5.3/layout/containers/)).
 ```html
 <body>
     <div class="container">
@@ -152,7 +147,7 @@ Nyní si nastavíme výchozí styly pro naše dva hlavní kontejnery `div`, kter
 ```
 
 ### Header
-V záhlaví si nastavíme vnější okraj nahoře a dole pomocí třídy `my-4` ([dokumentace](https://getbootstrap.com/docs/5.3/utilities/spacing/#margin-and-padding)) a nadpis zarovnáme na střed pomocí třídy `class="text-center"` ([dokumentace](https://getbootstrap.com/docs/5.3/utilities/text/#text-alignment)).
+V záhlaví si nastavte vnější okraj nahoře a dole pomocí třídy `my-4` ([dokumentace](https://getbootstrap.com/docs/5.3/utilities/spacing/#margin-and-padding)) a nadpis zarovnejte na střed pomocí třídy `class="text-center"` ([dokumentace](https://getbootstrap.com/docs/5.3/utilities/text/#text-alignment)).
 ```html
 <header class="my-4">
     <h1 class="text-center">My TODO list</h1>
@@ -160,9 +155,9 @@ V záhlaví si nastavíme vnější okraj nahoře a dole pomocí třídy `my-4` 
 ```
 
 ### Navigace
-Pro navigaci si zkopírujeme kód z [dokumentace](https://getbootstrap.com/docs/5.3/components/navbar/) Bootstrap. Díky tomu budeme mít funkční navigaci s funkčními styly, která bude připravena i pro malá zařízení (responzivní desing).
+Pro navigaci si zkopírujte kód z [dokumentace](https://getbootstrap.com/docs/5.3/components/navbar/) Bootstrap. Díky tomu budeme mít navigaci s funkčními styly, která bude připravena i pro malá zařízení (responzivní desing).
 
-Pro náš projekt použijeme tuto Bootstrap navigaci, kterou si později upravíme pro naše potřeby.
+Pro projekt použijeme tuto Bootstrap navigaci, kterou si později upravíme pro naše potřeby.
 ```html
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
   <div class="container-fluid">
@@ -181,13 +176,13 @@ Pro náš projekt použijeme tuto Bootstrap navigaci, kterou si později upraví
   </div>
 </nav>
 ```
-Můžeme si upravit barvu navigace tak, aby měla tmavé pozadí a světlé písmo. Defaultně Bootstrap používá tzv. light mode, je však možné i použít tzv. dark mode ([dokumentace](https://getbootstrap.com/docs/5.3/customize/color-modes/)). Stačí vyměnit jeden řádek:
+Nyní si upravíme barvu navigace tak, aby měla tmavé pozadí a světlé písmo. Ve výchozím nastavení Bootstrap používá tzv. light mode, je však možné použít tzv. dark mode ([dokumentace](https://getbootstrap.com/docs/5.3/customize/color-modes/)). Stačí vyměnit jeden řádek:
 ```html
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
 ```
 
 ### Zápatí
-Také pro zápatí použijeme dark mode a upravíme padding a margin dle naší představy.
+Také pro zápatí použijte dark mode a upravte padding a margin podle svého vkusu.
 ```html
 <div class="container">
     <!-- Zápatí -->
@@ -198,7 +193,7 @@ Také pro zápatí použijeme dark mode a upravíme padding a margin dle naší 
 ```
 
 ### Layout s Flexbox
-V projektu nastavíme layout pomocí Flexbox a Bootstrap ([dokumentace](https://getbootstrap.com/docs/5.3/utilities/flex/)) tak, aby všechny kontejnery, které budou patřit do Flexboxu se zarovnaly do jednoho sloupce a poslední se vždy zobrazil až na konci stránky. Díky tomu bude zápatí vždy na konci stránky, i když v `body` bude málo obsahu. Také zmenšíme maximální šířku kontejneru s obsahem na 800 pixelů, aby byl hlavní obsah v méně širokém sloupci. Po přidání všech tříd a stylů bude `body` vypadat takto:
+V projektu nastavte layout pomocí Flexbox a Bootstrap ([dokumentace](https://getbootstrap.com/docs/5.3/utilities/flex/)) tak, aby všechny kontejnery, které budou patřit do Flexboxu se zarovnaly do jednoho sloupce a poslední se vždy zobrazil až na konci stránky. Díky tomu bude zápatí vždy na konci stránky, i když v `body` bude málo obsahu. Také nastavte maximální šířku kontejneru s obsahem na 800 pixelů, aby byl hlavní obsah v méně širokém sloupci. Po přidání všech tříd a stylů bude `body` vypadat takto:
 ```html
 <body>
     <div class="mx-auto d-flex align-items-end flex-column min-vh-100" style="max-width: 800px;"> 
@@ -224,7 +219,7 @@ V projektu nastavíme layout pomocí Flexbox a Bootstrap ([dokumentace](https://
 ```
 
 ## Shrnutí
-Po první části náš projekt vypadá takto:
+Po první části projekt vypadá takto:
 
 <img src="images/flask_todo_app_version1.png" alt="Flask TODO aplikace ukázka 1" width="500">
 

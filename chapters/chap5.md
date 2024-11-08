@@ -5,8 +5,8 @@
 
 - Úvod do Flasku a webových frameworků: Co je Flask, proč jej používat, základní principy webových frameworků.
 - Instalace a první Flask aplikace: Jak nainstalovat Flask, vytvořit základní aplikaci.
-	- Python environment, instalace Flasku přes pip.
-	- Vytvoření první route, návratová hodnota Hello, World!.
+	- Python environment, instalace Flasku přes `pip`.
+	- Vytvoření první route, návratová hodnota `Hello, World!`.
 - Routing a URL mapování: Jak fungují URL adresy ve Flasku, jak pracovat s route dekorátory.
 	- Použití proměnných v URL.
 	- Metody HTTP.
@@ -14,9 +14,9 @@
 
 **Projekt** 
 
-- Vytvoření základní struktury aplikace
+- Vytvoření základní struktury aplikace.
 - Přidání první HTML stránky se seznamem úkoů a první routy pro její zobrazení.
-- Přidání stylů pomocí frameworku Bootstrap
+- Přidání stylů pomocí frameworku Bootstrap.
 
 ***
 
@@ -37,12 +37,12 @@ Zdrojový kód Flasku najdete na GitHubu [zde](https://github.com/pallets/flask/
 ### Základní principy webových frameworků
 Webový framework je nástroj, který poskytuje vývojářům předem připravenou strukturu pro tvorbu webových aplikací. Tím zjednodušuje proces vývoje a snižuje množství opakujícího se kódu, který je třeba napsat. Některé klíčové principy webových frameworků:
 
-- **Routing**: Framework poskytuje nástroj pro mapování URL adres na specifické funkce v aplikaci. To znamená, že každá URL adresa (např. /home nebo /about) může být spojena s konkrétní funkcí, která zpracovává požadavek a vrací odpověď.
+- **Routing**: Framework poskytuje nástroj pro mapování URL adres na specifické funkce v aplikaci. To znamená, že každá URL adresa (např. `/home` nebo `/about`) může být spojena s konkrétní funkcí, která zpracovává požadavek a vrací odpověď.
 - **Šablony**: Frameworky obvykle podporují šablonové systémy, které umožňují oddělit logiku aplikace od prezentace (HTML). Flask používá šablonový jazyk Jinja2.
 - **Práce s HTTP protokolem**: Webové frameworky zjednodušují práci s HTTP požadavky a odpověďmi (např. GET, POST). Flask umožňuje snadnou manipulaci s těmito metodami a poskytuje nástroje pro práci s daty z formulářů, cookies, session apod.
 - **Middleware**: Umožňuje přidávání dalších vrstev do aplikačního procesu, například pro autentizaci, logování nebo zpracování chyb.
 
-Flask, i když minimalistický, poskytuje vývojáři všechny základní nástroje potřebné pro tvorbu moderní webové aplikace s plnou kontrolou nad tím, co je do aplikace integrováno.
+Flask, i když je minimalistický, poskytuje vývojáři všechny základní nástroje potřebné pro tvorbu webové aplikace s plnou kontrolou nad tím, co je do aplikace integrováno.
 
 ### Django a další webové frameworky
 Kromě Flasku existuje celá řada webových frameworků pro Python i další programovací jazyky. Pokud zůstaneme v Python světě, kromě Flasku se můžete potkat
@@ -51,27 +51,11 @@ s těmito frameworky.
 
 **Django**
 
-[Django](https://www.djangoproject.com) je jeden z nejpopulárnějších webových frameworků pro Python, který se zaměřuje na rychlý vývoj a čistý design. Je postaven na princi batteries-included, což znamená, že poskytuje širokou škálu vestavěných funkcí, jako je správa databází, uživatelská autentizace, admin panel a další. Django využívá Model-View-Template (MVT) architekturu a je ideální pro vytváření komplexních webových aplikací, kde je důležitá bezpečnost a rychlost vývoje.
+[Django](https://www.djangoproject.com) je populární webových frameworků pro Python, který je postaven na principu batteries-included, což znamená, že poskytuje širokou škálu vestavěných funkcí, jako je správa databází, uživatelská autentizace, admin panel a další. Django využívá Model-View-Template (MVT) architekturu a je ideální pro vytváření komplexních webových aplikací, kde je důležitá bezpečnost a rychlost vývoje.
 
 Stejně jako Flask má Django velkou aktivní komunitu a existuje k němu velké množství tutoriálů, návodů, článků apod. Jedním z mnoha je tento [návod](https://tutorial.djangogirls.org/cs/) od Django Girls, který je v několika jazycích, včetně češtiny.
 
-
-**FastAPI**
-
-[FastAPI](https://fastapi.tiangolo.com) je moderní, rychlý (na základě standardů ASGI) framework pro vytváření API. Je navržen tak, aby byl jednoduchý na použití a zároveň velmi rychlý. FastAPI podporuje asynchronní programování a generování dokumentace API pomocí OpenAPI a JSON Schema, což usnadňuje práci s API.
-
-
-**Pyramid**
-
-[Pyramid](https://trypyramid.com) je flexibilní a robustní webový framework, který umožňuje vývoj malých i velkých aplikací. Pyramid podporuje širokou škálu datových modelů a má dobré možnosti pro autentizaci a autorizaci uživatelů. Jeho hlavní výhodou je jeho modulárnost a schopnost přizpůsobit se specifickým potřebám projektů.
-
-
-**Falcon**
-
-[Falcon](https://falconframework.org) je framework zaměřený na výkon, který se používá pro vytváření RESTful API. Je navržen tak, aby byl co nejefektivnější, a poskytuje nízkou latenci. Falcon je skvělý pro aplikace, kde je výkon klíčovým faktorem, jako jsou microservices.
-
-
-Každý z těchto frameworků má své specifické vlastnosti a je určen pro různé scénáře. Výběr správného frameworku závisí na požadavcích projektu, potřebné funkčnosti, a osobních preferencích vývojáře. Flask a Django zůstávají nejoblíbenějšími volbami pro většinu běžných webových aplikací, ale další frameworky mohou být velmi užitečné pro specifické situace.
+Mezi další webové frameworky patří [FastAPI](https://fastapi.tiangolo.com), [Pyramid](https://trypyramid.com) nebo [Falcon](https://falconframework.org) a další. Každý z těchto frameworků má své specifické vlastnosti a je určen pro různé scénáře. Výběr správného frameworku závisí na požadavcích projektu, potřebné funkčnosti, a osobních preferencích vývojáře. Flask a Django zůstávají nejoblíbenějšími volbami pro většinu běžných webových aplikací, ale další frameworky mohou být velmi užitečné pro specifické situace.
 
 
 ## 5.2 Instalace a první Flask aplikace
@@ -81,22 +65,22 @@ Otevřete si terminál, vytvořte si tuto složku a přejděte do ní.
 
 
 **Vytvoření složky s Mac a Linux**
-- otevřete si aplikaci Terminál
-- přejděte do své pracovní složky, ve které máte všechny projekty pomocí `cd ..` (přechod o úroveň výše) nebo `cd <nazev_složky>` (přechod o úroveň níže)
-- pomocí příkazu `ls` zobraz seznam souborů a složek v aktuální složce
-- vytvořte novou složku pomocí příkazu `mkdir flask-aplikace`
-- přejděte do nové složky pomocí příkazu `cd flask-aplikace`
+- Otevřete si aplikaci Terminál,
+- přejděte do své pracovní složky, ve které máte všechny projekty pomocí `cd ..` (přechod o úroveň výše) nebo `cd <nazev_složky>` (přechod o úroveň níže),
+- pomocí příkazu `ls` zobrazte seznam souborů a složek v aktuální složce,
+- vytvořte novou složku pomocí příkazu `mkdir flask-aplikace`,
+- přejděte do nové složky pomocí příkazu `cd flask-aplikace`.
 
 
 **Vytvoření složky s Windows**
-- otevřete si příkazový řádek (command prompt) - stiskněte klávesy `Win` + `R`, zadejte `cmd` a potvrďte pomocí `enter`
-- přejděte do své pracovní složky, ve které máte všechny projekty pomocí `cd ..` (přechod o úroveň výše) nebo `cd <nazev_složky>` (přechod o úroveň níže)
-- pomocí příkazu `dir` zobraz seznam souborů a složek v aktuální složce
-- vytvořte novou složku pomocí příkazu `mkdir flask-aplikace`
-- přejděte do nové složky pomocí příkazu `cd flask-aplikace`
+- Otevřete si příkazový řádek (command prompt) = stiskněte klávesy `Win` + `R`, zadejte `cmd` a potvrďte pomocí `enter`,
+- přejděte do své pracovní složky, ve které máte všechny projekty pomocí `cd ..` (přechod o úroveň výše) nebo `cd <nazev_složky>` (přechod o úroveň níže),
+- pomocí příkazu `dir` zobrazte seznam souborů a složek v aktuální složce,
+- vytvořte novou složku pomocí příkazu `mkdir flask-aplikace`,
+- přejděte do nové složky pomocí příkazu `cd flask-aplikace`.
 
 ### Virtuální prostředí
-Další krok je vytvoření virtuální prostředí. Jedná se o oddělený prostor, ve kterém je možné instalovat a spravovat závislosti (knihovny, balíčky) pro projekt, aniž by by byly ovlivněny globální instalace Pythonu a knihoven. To znamená, že každý projekt může mít vlastní sadu nainstalovaných knihoven a balíčků, které se nepřekrývají s jinými projekty nebo s Pythonem na počítači.
+Další krok je vytvoření virtuálního prostředí. Jedná se o oddělený prostor, ve kterém je možné instalovat a spravovat závislosti (knihovny, balíčky) pro projekt, aniž by by byly ovlivněny globální instalace Pythonu a knihoven. To znamená, že každý projekt může mít vlastní sadu nainstalovaných knihoven a balíčků, které se nepřekrývají s jinými projekty nebo s Pythonem na počítači.
 
 Hlavní důvody, proč používat virtuální prostředí:
 
@@ -109,20 +93,19 @@ Virtuální prostředí tedy zajišťuje čisté, izolované prostředí pro ka�
 
 
 **Vytvoření virtuálního prostředí s Mac a Linux**
-- vytvořte si virtuálního prostředí `python3 -m venv projekt-venv`
-- aktivujte si virtuálního prostředí `source projekt-venv/bin/activate`
+- Vytvořte si virtuálního prostředí `python3 -m venv projekt-venv`,
+- aktivujte si virtuálního prostředí `source projekt-venv/bin/activate`.
 
 
 **Vytvoření virtuálního prostředí s Windows**
-- vytvořte si virtuálního prostředí `python -m venv projekt-venv`
-- aktivujte si virtuálního prostředí `.\project-venv\Scrtipts\activate`
+- Vytvořte si virtuálního prostředí `python -m venv projekt-venv`,
+- aktivujte si virtuálního prostředí `.\project-venv\Scrtipts\activate`.
 
 
 Po aktivaci je název virtuálního prostředí `project-venv` vidět před promptem v terminálu. Virtuální prostředí lze deaktivovat pomocí příkazu `deactivate`.
 
 ### Instalace Flask
-Do aktivovaného virtuálního prostředí si nainstalujeme framework Flask. Před samotnou instalací zkontrolujeme, jaké knihovny máme ve virtuálním prostředí
-nainstalované pomocí příkazu `pip list`.
+Do aktivovaného virtuálního prostředí si nainstalujeme framework Flask. Před samotnou instalací zkontrolujeme, jaké knihovny již ve virtuálním prostředí máme nainstalované a to pomocí příkazu `pip list`.
 ```bash
 $ pip list
 Package    Version
@@ -130,8 +113,7 @@ Package    Version
 pip        24.2
 setuptools 65.5.0
 ```
-Nástroj `pip` slouží pro správu Python balíčků. Umožňuje je instalovat, aktualizovat a odstraňovat. My jsme teď použili příkaz pro zobrazení seznamu všech
-balíčků nainstalovaných v našem virtuálním prostředí.
+Nástroj `pip` slouží pro správu Python balíčků. Umožňuje je instalovat, aktualizovat a odstraňovat. My jsme teď použili příkaz pro zobrazení seznamu všech balíčků nainstalovaných v našem virtuálním prostředí.
 
 Nyní je čas nainstalovat Flask.
 ```bash
@@ -172,8 +154,7 @@ if __name__ == '__main__':
     app.run(debug=True)
 ```
 V tomto případě pouštíme Flask aplikace v tzv. debug módu (`debug=True`). Díky tomu server automaticky aplikuje všechny změny, které ve svém
-projektu uděláme, aniž by bylo nutné ho restartovat. To je velmi žádoucí, když se aplikace tvoří. Tento mód nám také umožní využívat debugovací
-nástroje.
+projektu uděláme, aniž by bylo nutné ho restartovat. To je velmi žádoucí ve fázi vývoje.
 
 Po každé změně nezapomeňte soubor uložit. VS Code stejně jako i ostatní programátorské editory umožňují nastavit tzv. automatické ukládání souborů, díky kterému
 již nikdy nezapomenete soubory uložit. Tuto možnost si můžete zapnout přes Menu -> File -> Auto Save.
@@ -185,8 +166,7 @@ python app.py
 ```
 Aplikace bude dostupná na adrese http://127.0.0.1:5000/, kde 5000 je defaultní port, který Flask používá při svém spuštění.
 
-Pokud se vám nedaří aplikaci pustit a v terminálu dostáváte chybu s informací, že port 5000 je již použit jiným programem, pak si zkuste nastavit
-jiný port a to tak, že konkrétní číslo portu nastavíme v `app.py` na posledním řádku.
+Pokud se vám nedaří aplikaci pustit a v terminálu dostáváte chybu s informací, že port 5000 je již použit jiným programem, pak si zkuste nastavit jiný port.
 ```python
 from flask import Flask
 
@@ -205,7 +185,7 @@ Aplikace bude dostupná na adrese http://127.0.0.1:5555/.
 **Gratuluji, právě jste vytvořili svou první Flask aplikaci !!!**
 
 ## 5.3 Routing a URL mapování
-**Routing** je základní koncept ve Flasku, který slouží k mapování URL adres na konkrétní funkce nebo metody v aplikaci. Každá URL adresa, kterou uživatel zadá do prohlížeče, vede k určité funkci (nebo view), která zpracuje požadavek a vrátí odpověď. V této kapitole se podíváme na to, jak funguje routing ve Flasku, jak pracovat s dekorátory `@app.route()`, používat proměnné v URL a jak pracovat s HTTP metodami GET a POST.
+**Routing** je základní koncept ve Flasku, který slouží k mapování URL adres na konkrétní funkce nebo metody v aplikaci. Každá URL adresa, kterou uživatel zadá do prohlížeče, vede k určité funkci, která zpracuje požadavek a vrátí odpověď. V této kapitole se podíváme na to, jak funguje routing ve Flasku, jak pracovat s dekorátory `@app.route()`, používat proměnné v URL a jak pracovat s HTTP metodami GET a POST.
 
 Ve Flasku se každé URL mapuje na určitou funkci. Tato funkce zpracovává požadavek a vrací odpověď (např. HTML stránku, JSON data nebo zprávu).
 ```python
@@ -249,7 +229,7 @@ app.add_url_rule('/', 'index', index)
 if __name__ == '__main__':
     app.run(debug=True)
 ```
-Obě metody jsou správné, volba závisí na typu projektu. Pro většinu jednodušších projektů bude `@app.route()` dostačující, zatímco `app.add_url_rule()` může být užitečné pro složitější a modulární projekty.
+Obě metody jsou správné, volba závisí na typu projektu. My budeme v našem projektu používat způsob s dekorátorem`@app.route()`.
 
 ### Příklad
 **Flask ukázka 1** je aplikace se třemi routami, kdy jedna vrací jako odpověď jednoduchou HTML stránku, druhá JSON data a třetí jednoduchou zprávu.
@@ -261,7 +241,7 @@ Flask umožňuje přidávat proměnné přímo do URL adresy. To je užitečné,
 def show_user_profile(username):
     return f"Profil uživatele: {username}"
 ```
-Zde `/<username>` říká, že část URL je proměnná a hodnota se předává jako argument funkci `show_user_profile()`. Pokud by uživatel zadal URL `http://localhost:5000/user/jan`, vrátila by se zpráva „Profil uživatele: jan“.
+Zde `/<username>` říká, že část URL je proměnná a hodnota se předává jako argument funkci `show_user_profile()`. Pokud by uživatel zadal URL `http://localhost:5000/user/Jan`, vrátila by se zpráva „Profil uživatele: Jan“.
 
 Ve Flasku lze použít proměnné nejen na konci URL, ale i uprostřed, což je užitečné v případech, kdy je potřeba dynamické části URL umístit mezi statické části.
 ```python
@@ -277,7 +257,7 @@ def user_posts(username):
 if __name__ == '__main__':
     app.run(debug=True)
 ```
-Flask zpracuje URL a vyextrahuje část odpovídající proměěnné `username`. Statické části URL jako je `/user/` nebo `/posts` musí přesně odpovídat zadané cestě. Proměnnou lze takto přidat kamkoliv v rámci URL a Flask ji dynamicky přiřadí.
+Flask zpracuje URL a vyextrahuje část odpovídající proměnné `username`. Statické části URL jako je `/user/` nebo `/posts` musí přesně odpovídat zadané cestě. Proměnnou lze takto přidat kamkoliv v rámci URL a Flask ji dynamicky přiřadí.
 
 Další možnost je mít dvě a více proměnných v URL.
 ```python
@@ -298,25 +278,20 @@ def show_post(post_id):
     return f"Příspěvek číslo: {post_id}"
 ```
 Podporované datové typy v URL jsou:
-- `string` (výchozí) – jakýkoli text bez lomítek
-- `int` – integer (číslo)
-- `float` – desetinné číslo
-- `path` – rozšířený string, který může obsahovat lomítka
+- `string` (výchozí) – jakýkoli text bez lomítek,
+- `int` – integer (číslo),
+- `float` – desetinné číslo,
+- `path` – rozšířený string, který může obsahovat lomítka.
 
-Možnost použití proměnné typu path (tzv. subpath) ve Flasku je užitečná, když potřebuješ zpracovávat víceúrovňové cesty (tj. cesty, které obsahují lomítka /) v rámci jedné route. Zatímco běžná proměnná typu string ve Flasku přijme pouze text do prvního lomítka, proměnná typu path přijme celý řetězec, včetně lomítek.
-
-- **Dynamické cesty k souborům nebo adresářům**: Pokud pracuješ s cestami k souborům, můžeš tak snadno zpracovávat cesty s podadresáři. Např. pokud máš soubory uložené ve složkách a potřebuješ URL, které zpracuje různé úrovně cest, jako `/files/documents/report.pdf`, proměnná typu path ti umožní zpracovat celý řetězec.
-- **REST API pro složitější struktury**: Ve složitějších API můžeš dynamicky pracovat s URL, které mají vícero oddělení pomocí lomítek. Např. v rámci nějaké API pro získání detailů o zdroji můžeš použít cestu jako `/api/resource/category/item/id`, kde je nutné zpracovat jak kategorii, tak i jednotlivé položky.
-- **Navigace v rámci webu s podstránkami**: Pokud máš víceúrovňovou navigaci, kde se stránka skládá z několika podsekcí, může být proměnná typu path užitečná pro dynamické vytváření obsahu. Například na stránkách dokumentace: `/docs/chapter1/section2`.
-
+Možnost použití proměnné typu `path` ve Flasku je užitečná, když je potřeba zpracovávat víceúrovňové cesty (tj. cesty, které obsahují lomítka /) v rámci jedné route. Zatímco běžná proměnná typu `string` ve Flasku přijme pouze text do prvního lomítka, proměnná typu `path` přijme celý řetězec, včetně lomítek.
 
 ### Příklad
 **Flask ukázka 2** je aplikace s několika routami, které používají proměnné v URL a ukazují použití různých datových typů.
 
 ### HTTP metody
-V rámci webových aplikací používáme různé HTTP metody ke komunikaci mezi klientem (např. prohlížečem) a serverem.
+V rámci webových aplikací se používají různé HTTP metody ke komunikaci mezi klientem (např. prohlížečem) a serverem.
 
-Metoda **GET** slouží k získání dat ze serveru. Když například prohlížeč zadá URL, pošle na server požadavek metodou GET, a server vrátí odpověď (např. HTML stránku). GET metoda je ve Flasku výchozí a není nutné ji specifikovat.
+Metoda **GET** slouží k získání dat ze serveru. Když uživatel zadá do prohlížeče URL, prohlížeč pošle na server požadavek metodou GET, a server vrátí odpověď (např. HTML stránku). Metoda GET je ve Flasku výchozí a není nutné ji specifikovat.
 ```python
 @app.route('/greet')
 def greet():
@@ -324,7 +299,7 @@ def greet():
 ```
 Tento kód zobrazí text „Ahoj, uživateli!“ při požadavku typu GET na URL `/greet`.
 
-Metoda **POST** se používá k odesílání dat, například při odesílání formuláře. Tato metoda umožňuje zpracovávat data na serveru.
+Metoda **POST** se používá k odesílání dat, například při odesílání formuláře.
 ```python
 from flask import request
 
@@ -346,22 +321,20 @@ def contact():
 ```
 Zde formulář na stránce `/contact` zpracovává údaje odeslané metodou POST. Pokud uživatel stránku navštíví pomocí GET, zobrazí se šablona `contact.html`.
 
-Existují i další HTML metody jako HEAD, PUT, DELETE, PATCH a další, v našem kurzu si ale zatím vystačíme jen s GET a POST.
+Existují i další HTML metody jako HEAD, PUT, DELETE, PATCH a další.
 
 ### Příklad
 **Flask ukázka 3** je aplikace, která ukazuje použití metody GET a POST v jedné funkci.
 
 ### Generování URL
-Ve Flasku existuje metoda `url_for()`, která je klíčovým nástrojem pro generování URL adres založených na názvech funkcí (tzv. view funkcí) spíše než na pevných URL cestách. To zajišťuje flexibilitu a snadnou údržbu aplikací.
-
-Tato metoda umožňuje dynamicky generovat URL adresy pro funkce definované v aplikaci. Namísto pevného zadání cesty (což může být problematické při změnách struktury URL), se použije název funkce. Flask poté vytvoří správnou URL adresu na základě zadané view funkce a argumentů.
+Ve Flasku existuje metoda `url_for()`, která slouží pro generování URL adres na základě názvu funkce. Tato metoda umožňuje dynamicky generovat URL adresy pro funkce definované v aplikaci. Namísto pevného zadání cesty (což může být problematické při změnách struktury URL), se použije název funkce. Flask poté vytvoří správnou URL adresu na základě zadané view funkce a argumentů.
 
 ### Příklad
 **Flask ukázka 4** je aplikace, která ukazuje použití metody `url_for()`.
 
-## 5.4 Spuštění a testování Flask aplikace
+## 5.4 BONUS: Spuštění a testování Flask aplikace
 ### Spuštění Flask aplikace
-Jeden způsob spuštění Flask aplikace jsme si již ukázali.
+Dosud jsme používali jeden z možných způsobů puštění Flask aplikace.
 ```python
 from flask import Flask
 
@@ -379,7 +352,7 @@ Ve virtuálním prostředí s nainstalovaným Flaskem pustíme aplikací pomocí
 python app.py
 ```
 
-Druhý způsob je puštění pomocí `flask run`, ale musíme přidat informaci o tom, který soubor má být spuštěn pomocí `FLASK_APP=app.py`. V systémech Linux a Mac pomocí:
+Existuje i další způsob a to spuštění pomocí `flask run`. Před zadáním samotného příkazu pro spuštění je nutné nastavit, který soubor má být spuštěn pomocí `FLASK_APP=app.py`. V systémech Linux a Mac pomocí:
 ```bash
 FLASK_APP=app.py flask run
 ```
@@ -412,8 +385,9 @@ set FLASK_DEBUG=1
 flask run
 ```
 
-Pokud byl Flask server puštěn v debug módu, Flask automaticky znovu načte aplikaci pokaždé, když změníte kód. Výstup po spuštění serveru bude obsahovat informaci
-o tom, na jaké adrese server běží, např.:
+Pokud byl Flask server puštěn v debug módu, Flask automaticky znovu načte aplikaci pokaždé, když dojde ke změně kódu. Výjimkou jsou situace, které způsobí ukončení aplikace, jako jsou různé chyby a výjimky.
+
+Výstup po spuštění serveru bude obsahovat informaci o tom, na jaké adrese server běží, např.:
 ```bash
  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
 ```
@@ -424,12 +398,12 @@ Jakmile je aplikace spuštěna, je důležité ji otestovat. Jedním z nejjednod
 
 [Postman](https://www.postman.com) je oblíbený nástroj pro odesílání HTTP požadavků na server a pro testování API.
 
-Další nástroj, který lze použít je **cURL**. Jedná se o nástroj pro příkazovou řádku, který umožňuje posílat HTML požadavky.
+Další nástroj, který lze použít je **cURL**. Jedná se o nástroj pro příkazovou řádku, který umožňuje posílat HTML požadavky. Více detailů najdete v [dokumentaci](https://curl.se/docs/).
 ```bash
 curl http://127.0.0.1:5000/
 ```
 
-[UnitTest](https://docs.python.org/3/library/unittest.html) - Flask také nabízí framework pro psaní testů v Pythonu. Pomocí knihovny unittest můžete psát a spouštět testy přímo v kódu aplikace.
+[UnitTest](https://docs.python.org/3/library/unittest.html) - Flask také nabízí framework pro psaní testů v Pythonu. Pomocí knihovny unittest je možné psát a spouštět testy přímo v kódu aplikace.
 
 ## 5.5 Další zdroje
 - [Flask dokumentace](https://flask.palletsprojects.com/en/3.0.x/)

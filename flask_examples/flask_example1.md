@@ -1,5 +1,5 @@
 # Flask aplikace se třemi jednoduchými routami
-Ukázka jednoduché Flask aplikace se třemi routami:
+Ukázka Flask aplikace se třemi routami:
 - routa `/` vrací jednoduchou HTML stránku
 - routa `/api/data` vrací JSON dokument
 - routa `/message` vrací textovou zprávu
@@ -70,4 +70,4 @@ Soubor `index.html` uvnitř složky `templates`:
 </html>
 ```
 
-Flask aplikace se defaultě spustí na portu 5000. Pokud tedy v prohlížeči navštívíš `http://localhost:5000/`, zobrazí se HTML stránka. Pokud navštívíš `http://localhost:5000/api/data`, dostaneš JSON odpověď, a pokud navštívíš `http://localhost:5000/message`, zobrazí se textová zpráva.
+Flask aplikace se ve výchozím nastavení spustí na portu 5000. Pokud v prohlížeči navštívíš `http://localhost:5000/`, zobrazí se HTML stránka. Pokud navštívíš `http://localhost:5000/api/data`, dostaneš JSON odpověď, a pokud navštívíš `http://localhost:5000/message`, zobrazí se textová zpráva.
