@@ -1,5 +1,5 @@
 # Flask aplikace s metodou `url_for()`
-Ukázka jednoduché Flask aplikace s použitím metody `url_for()`. Funkce `hello_user()` zkontroluje, zda se jedná
+Ukázka Flask aplikace s použitím metody `url_for()`. Funkce `hello_user()` zkontroluje, zda se jedná
 o administrátora či jiného uživatele, a podle toho vygeneruje ULR, která se zavolá a vrátí správnou zprávu.
 
 ```python
