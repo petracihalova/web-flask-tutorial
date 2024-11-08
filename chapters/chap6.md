@@ -95,7 +95,7 @@ if __name__ == "__main__":
 ```
 
 ### Podmínky v Jinja2
-Pomocí Jinja2 můžete v šablonách používat podmínky, které rozhodují, co se má zobrazit podle logiky aplikace. Podmínky mají stejnou logiku jako podmínky, které znáte z Pythonu (`if` + `elif` + `else`). Zápis je ale trochu jiný a také je nutné podmínku ukončit pomocí `endif` bloku.
+Pomocí Jinja2 lze v šablonách používat podmínky, které rozhodují, co se má zobrazit podle logiky aplikace. Podmínky mají stejnou logiku jako podmínky, které znáte již z Pythonu (`if` + `elif` + `else`). Zápis je ale trochu jiný a také je nutné podmínku ukončit pomocí `endif` bloku.
 ```html
 <p>
     {% if user_is_logged_in %}
@@ -107,7 +107,7 @@ Pomocí Jinja2 můžete v šablonách používat podmínky, které rozhodují, c
 ```
 
 ### Cykly v Jinja2
-Pro iteraci (procházení) seznamů můžete v Jinja2 použít cyklus `for`. Následující ukázka zachycuje procházení seznamu úkolů a jejich vypsání na stránce. 
+Pro iteraci (procházení) seznamů se v Jinja2 používá cyklus `for`. Následující ukázka zachycuje procházení seznamu úkolů a jejich vypsání na stránce. 
 ```html
 <ul>
     {% for task in tasks %}
@@ -124,16 +124,16 @@ def tasks():
 ```
 
 ## 6.3 Rozdělení HTML kódu do šablon
-Pomocí šablon lze rozdělit HTML kód a vytvářet opakovaně použitelné komponenty. Tím dosáhnete čistého a organizovaného kódu, který se snadno udržuje. Hlavní výhody tohoto přístupu tedy jsou:
-- **Znovupoužitelnost**: Mnoho částí webových stránek, jako je například hlavička nebo patička, se opakuje na různých stránkách. Místo psaní stejného kódu několikrát můžeme tyto části oddělit a opakovaně je použít ve více šablonách.
+Pomocí šablon lze rozdělit HTML kód a vytvářet opakovaně použitelné komponenty. Tím lze dosáhnout čistého a organizovaného kódu, který se snadno udržuje. Hlavní výhody tohoto přístupu jsou:
+- **Znovupoužitelnost**: Mnoho částí webových stránek, jako je například hlavička nebo patička, se opakuje na různých stránkách. Místo psaní stejného kódu několikrát je možné tyto části oddělit a opakovaně je použít ve více šablonách.
 - **Snadná úprava**: Jakmile oddělíme jednotlivé části stránky (hlavička, patička, obsah atd.), stačí upravit jeden soubor (šablonu) a změny se automaticky projeví všude tam, kde tuto šablonu používáme.
 - **Čistý a přehledný kód**: Oddělení HTML kódu do menších, přehlednějších částí umožňuje udržovat aplikaci přehlednou a jednodušeji čitelnou.
 
 Typickým způsobem rozdělení HTML kódu je vytvoření základního layoutu a potom šablon pro jednotlivé stránky. Základní layout může obsahovat prvky jako hlavička, navigace a patička, které se opakují na každé stránce, zatímco obsah každé stránky bude definován v samostatných šablonách.
 
-Flask nám umožňuje používat **bloky** (block) v Jinja2 šablonách, které označují části kódu, které můžeme měnit podle potřeby.
+Flask umožňuje používat **bloky** (`block`) v Jinja2 šablonách, které označují části kódu, které můžeme měnit podle potřeby.
 
-Můžeme si vytvořit HTML dokument se základním rozložením naší stránky (záhlaví, navigace, zápatí) a na místo, kde budeme mít obsah dát blok `{% block <název> %}`, kterým dáváme najevo, že zde se bude postupně vkládat obsah jednotlivých stránek.
+Můžeme si například vytvořit HTML dokument se základním rozložením naší stránky (záhlaví, navigace, zápatí) a na místo, kde budeme mít obsah dát blok `{% block <název> %}`, kterým dáváme najevo, že zde se bude postupně vkládat obsah jednotlivých stránek.
 ```html
 <body>
     <header>...</header>
@@ -159,10 +159,10 @@ Tento obsah pak máme uložen odděleně v druhém HTML dokumentu.
 V ukázce nejdříve říkáme, že tento HTML dokument rozšiřuje dokument s názvem `layout.html` a následně definujeme obsah, který se má vložit. Flask pak dokumenty poskládá do sebe a zobrazí jako jednu stránku.
 
 ### Příklad
-**Flask ukázka 5** je ukázka velmi jednoduchého použití šablon. Webová aplikace obsahuje základní šablonu `layout.html` a další 3 šablony s obsahem.
+**Flask ukázka 5** je ukázka jednoduchého použití šablon. Webová aplikace obsahuje základní šablonu `layout.html` a další 3 šablony s obsahem.
 
 ### Příklad
-**Flask ukázka 6** je ukázka použití šablon a Jinja2 výrazů. Jedná se o jednoduchou stránku, která zobrazuje seznam kurzů, do kterých je uživatel registrován.
+**Flask ukázka 6** je ukázka použití šablon a Jinja2 výrazů. Jedná se o stránku, která zobrazuje seznam kurzů, do kterých je uživatel registrován.
 
 ## 6.4 HTML formuláře ve Flasku
 Flask nabízí jednoduchý způsob, jak pracovat s HTML formuláři a zpracovávat data zadaná uživateli. V této kapitole se podíváme na to, jak odesílat data z formulářů, jak tato data validovat a jak pracovat s POST požadavky ve Flasku.
@@ -189,7 +189,7 @@ HTML formulář, který získává od uživatele jméno a příjmení:
 Atribut `action="/add_user"` určuje, kam se data z formuláře odešlou (URL). Atribut `method="POST"` říká, že data budou odeslána pomocí metody POST, což znamená, že se nebudou zobrazovat v URL a budou odeslána bezpečněji.
 
 ### Zpracování POST požadavku
-Ve Flasku můžeme zpracovat data z formuláře pomocí routy, pro kterou nastavíme POST metodu.
+Ve Flasku lze zpracovat data z formuláře pomocí routy, pro kterou nastavíme POST metodu.
 ```python
 from flask import Flask, request, redirect, url_for, render_template
 
@@ -218,10 +218,10 @@ def add_user():
 if __name__ == "__main__":
     app.run(debug=True)
 ```
-Pomocí `name = request.form.get("name")` získáme hodnotu zadanou v políčku pro "Jméno" (id = name). `request.form` obsahuje všechna odeslaná data z formuláře. Pomocí `methods=["POST"]` říkáme Flasku, že tato routa bude zpracovávat pouze požadavky typu POST. Nakonec pomocí `redirect(url_for("index"))` přesměrujeme uživatele naší stránky zpět na hlavní stránku.
+Pomocí `name = request.form.get("name")` získáme hodnotu zadanou v políčku pro "Jméno" (`id = name`). `request.form` obsahuje všechna odeslaná data z formuláře. Pomocí `methods=["POST"]` říkáme Flasku, že tato routa bude zpracovávat pouze požadavky typu POST. Nakonec pomocí `redirect(url_for("index"))` přesměrujeme uživatele naší stránky zpět na hlavní stránku.
 
 ### Jednoduchá validace formulářů
-Validace dat z formulářů je důležitá pro zajištění toho, že uživatel zadává správné údaje. Můžeme validovat data přímo v Pythonu nebo používat knihovny, jako je **Flask-WTF**, které zjednodušují práci s validací formulářů. Můžeme např. zkontrolovat, zda uživatel vyplnil všechny požadované informace a pokud ne, tak vrátíme chybu. V tomto případě vracíme chybu s kódem 400 Bad Request (špatný požadavek).
+Validace dat z formulářů je důležitá pro zajištění toho, že uživatel zadává správné údaje. Můžeme validovat data přímo v Pythonu nebo používat knihovny, jako je **Flask-WTF**, které zjednodušují práci s validací formulářů. Díky tomu můžeme zkontrolovat, zda uživatel vyplnil všechny požadované informace a pokud ne, tak vrátíme chybu. V tomto případě vracíme chybu s kódem 400 Bad Request (špatný požadavek).
 ```python
 @app.route("/add_user", methods=["POST"])
 def add_user():
@@ -259,7 +259,7 @@ class UserForm(FlaskForm):
     name = StringField("Jméno", validators=[DataRequired()])
     surname = StringField("Příjmení", validators=[DataRequired()])
 ```
-Kde `FlaskForm` představuje třídu pro formuláře. Můžeme definovat jednotlivá pole formuláře jako je textové pole `StringField`. Dále definujeme seznam validárů, které budou na pole použity, např. `DataRequired()` kontroluje, zda bylo pole vyplněno. Více informací o jednotlivých polích a validátorech najdete v dokumentaci pro [VTForms](https://wtforms.readthedocs.io).
+Kde `FlaskForm` představuje třídu pro formuláře. Můžeme definovat jednotlivá pole formuláře jako je textové pole `StringField`. Dále definujeme seznam validátorů, které budou na pole použity, např. `DataRequired()` kontroluje, zda bylo pole vyplněno. Detaily o jednotlivých polích a validátorech najdete v dokumentaci pro [VTForms](https://wtforms.readthedocs.io).
 
 ```python
 @app.route("/", methods=["GET", "POST"])
@@ -271,9 +271,9 @@ def index():
         return redirect(url_for("index"))
     return render_template("index.html", users=users, form=form)
 ```
-Zpracování formuláře probíhá tak, že metoda `validate_on_submit()` zkontroluje, zda byl formulář odeslán a zda validace proběhla v pořádku. Pokud ano, pak uložíme uživatele do seznamu `users`. 
+Zpracování formuláře probíhá tak, že metoda `validate_on_submit()` zkontroluje, zda byl formulář odeslán a zda validace proběhla v pořádku. Pokud ano, pak uloží uživatele do seznamu `users`. 
 
-HTML šablona pro formulář pak obsahuje kód `form.hidden_tag()`, který chrání proti CSRF útokům (Cross-Site Request Forgery). Aby nedošlo k chybě ve Flasku, musíme nastavit tzv. secret key v `app.py`.
+HTML šablona pro formulář pak obsahuje kód `form.hidden_tag()`, který chrání proti [CSRF](https://cs.wikipedia.org/wiki/Cross-site_request_forgery) útokům. Aby nedošlo k chybě ve Flasku, je nutné také nastavit tzv. secret key v `app.py`.
 ```python
 app = Flask(__name__)
 app.secret_key = 'your_secret_key'
@@ -299,20 +299,20 @@ Hodnota tohoto tajného klíče může být jakákoliv hodnota, pro naše potře
 
 ### Přehled základních formulářových polí a validátorů knihovny WTforms
 Knihovna WTforms obsahuje definice pro mnoho různých typů polí, zde je seznam těch nejvíce používaných:
-- **TextField**: reprezentuje HTML element `<input type = 'text'>`, je to tedy pole pro vložení textu
-- **BooleanField**: reprezentuje HTML element `<input type = 'checkbox'>`, jedná se o zaškrtávací políčko
-- **IntegerField**: funguje jako TextField, ale vynucuje vložení pouze celých čísel
-- **TextAreaField**: reprezentuje HTML element `<textarea>` a používá se pro víceřádkový textový vstup
-- **PasswordField**: reprezentuje HTML element `<input type = 'password'>`, kdy zadávané znaky nejsou zobrazeny
-- **SelectField**: reprezentuje HTML element `<select>` a slouží pro výběr hodnoty ze seznamu hodnot
+- **TextField**: reprezentuje HTML element `<input type = 'text'>`, je to tedy pole pro vložení textu.
+- **BooleanField**: reprezentuje HTML element `<input type = 'checkbox'>`, jedná se o zaškrtávací políčko.
+- **IntegerField**: funguje jako TextField, ale vynucuje vložení pouze celých čísel.
+- **TextAreaField**: reprezentuje HTML element `<textarea>` a používá se pro víceřádkový textový vstup.
+- **PasswordField**: reprezentuje HTML element `<input type = 'password'>`, kdy zadávané znaky nejsou zobrazeny.
+- **SelectField**: reprezentuje HTML element `<select>` a slouží pro výběr hodnoty ze seznamu hodnot.
 
 Knihovna WTforms také obsahuje řadu validátorů, mezi nejvíce používané patří:
-- **DataRequired**: pro kontrolu polí, kde je povinně vyžadována hodnota
-- **EqualTo**: porovnává hodnotu dvou polí
-- **Email**: kontroluje, zda je zadaná hodnota email
-- **Lenght**: umožňuje definovat minimální a maximální délku (počet znaků) textu
-- **NumberRange**: kontroluje, zda zadané číslo odpovídá definovanému rozpětí
-- **URL**: kontroluje, zda zadaná hodnota je URL
+- **DataRequired**: pro kontrolu polí, kde je povinně vyžadována hodnota.
+- **EqualTo**: porovnává hodnotu dvou polí.
+- **Email**: kontroluje, zda je zadaná hodnota email.
+- **Lenght**: umožňuje definovat minimální a maximální délku (počet znaků) textu.
+- **NumberRange**: kontroluje, zda zadané číslo odpovídá definovanému rozpětí.
+- **URL**: kontroluje, zda zadaná hodnota je URL.
 
 ## 6.5 Další zdroje
 - [w3schools HTML forms tutorial](https://www.w3schools.com/html/html_forms.asp)

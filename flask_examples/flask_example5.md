@@ -1,5 +1,5 @@
 # Flask aplikace s ukázkou použití šablon
-Ukázka jednoduché Flask aplikace se základní šablonou `layout.html` a třemi dalšími šablonami s obsahem, které se postupně načítají při výběru jednotlivých položek menu.
+Ukázka Flask aplikace se základní šablonou `layout.html` a třemi dalšími šablonami s obsahem, které se postupně načítají při výběru jednotlivých položek menu.
 
 
 Struktura projektu:
