@@ -1,5 +1,5 @@
 # Flask aplikace, která ukládá data z formuláře do SQLite databáze.
-Tento příklad zahrnuje vytvoření databáze, definici modelu knihy, vytvoření formuláře pro přidání knihy a zobrazení seznamu přidaných knih. Při prvním spuštění aplikace bude vytvořena složka `instance` a uvnitř soubor `books.db` s databází. Pomocí nástroje DB Browser for SQLite je možné sledovat, jak jsou data v databázi vytvářena, editována a mazána.
+Tento příklad zahrnuje vytvoření databáze, definici modelu pro knihu, vytvoření formuláře pro přidání knihy a zobrazení seznamu přidaných knih. Při prvním spuštění aplikace bude vytvořena složka `instance` a uvnitř soubor `books.db` s databází. Pomocí nástroje DB Browser for SQLite je možné sledovat, jak jsou data v databázi vytvářena, editována a mazána.
 
 Kromě frameworku `Flask` příklad používá knihovnu `Flask-SQLAlchemy`, kterou je nutné nainstalovat do virtuálního prostředí.
 ```bash

@@ -396,9 +396,9 @@ header img {
 }
 ```
 Díky `border-radius: 5%;` bude mít obrázek kulaté rohy, `width: 100%;` zajistí, že obrázek se roztáhne
-na celou šírku rodičovského prvku a `height: auto;` zajistí, že výška bude automaticky nastavena tak, aby odpovídala poměru stran obrázku. Díky tomu nedojde k deformaci obrázku při změně jeho šířky. 
+na celou šířku rodičovského prvku a `height: auto;` zajistí, že výška bude automaticky nastavena tak, aby odpovídala poměru stran obrázku. Díky tomu nedojde k deformaci obrázku při změně jeho šířky. 
 
-I když je šířka obrázku nastavena na 100% šířky rodičovského prvku, díky `max-width: 1000px;` obrázek nikdy nepřesáhne 1000 pixelů na šírku. To je užitečné pro omezení velikosti obrázku na velkých obrazovkách. Naopak na malých obrazovkách díky šířce 100% dojde ke zmenšení obrázku.
+I když je šířka obrázku nastavena na 100% šířky rodičovského prvku, díky `max-width: 1000px;` obrázek nikdy nepřesáhne 1000 pixelů na šířku. To je užitečné pro omezení velikosti obrázku na velkých obrazovkách. Naopak na malých obrazovkách díky šířce 100% dojde ke zmenšení obrázku.
 ```css
 header img {
   border-radius: 5%;
@@ -485,7 +485,7 @@ nav {
 
 Nastavíme styly také pro `ul` element: `display: flex;` a `justify-content: center;` pro uspořádání položek seznamu a jejich zarovnání na střed. Vlastnost `flex-wrap: wrap;` pak umožní položkám seznamu přetéct na další řádek, pokud je to potřeba.
 
-Také nastavíme vnější okraj pro `li` element a to tak, že nahoře a dole bude `0px `a vpravo a vlevo `1rem`, což je relativní jednotka, která se odvíjí od velikosti písma rodičovského prvku. To zajistí, že text v navigačním panelu nebude těsně u okrajů a bude mít kolem sebe nějaký prostor.
+Také nastavíme vnější okraj pro `li` element a to tak, že nahoře a dole bude `0px` a vpravo a vlevo `1rem`, což je relativní jednotka, která se odvíjí od velikosti písma rodičovského prvku. To zajistí, že text v navigačním panelu nebude těsně u okrajů a bude mít kolem sebe nějaký prostor.
 
 ```css
 nav ul {
@@ -568,7 +568,7 @@ Jiné typy okrajů jsou např. `dashed` (čárkovaná čára), `dotted` (tečkov
 
 
 ## 4.8 Galerie
-Nyní je čas vylepšit galerii fotek. Také si nastavíme vlastní CSS třídu `gallery` a ukážeme si, jak pro ni nastavit styly. Nejdříve si v sekci pro fotky vytvoříme nový `<div>` element, který bude obsahovat všechny naše fotky a přidáme mu třídu pomocí atributu `class`. U všech fotek také vymažeme atribut `height="200px"`, protože velikost fotek budeme ovládat CSS styly. Sekce v HTML dokumentu bude vypadat takto:
+Nyní je čas vylepšit galerii fotek. Také si nastavíme vlastní CSS třídu `gallery` a ukážeme si, jak pro ni nastavit styly. Nejdříve si v sekci pro fotky vytvoříme nový `<div>` element, který bude obsahovat všechny naše fotky a přidáme mu třídu pomocí atributu `class`. U všech fotek vymažeme atribut `height="200px"`, protože velikost fotek budeme ovládat CSS styly. Sekce v HTML dokumentu bude vypadat takto:
 ```html
 <section id="fotky">
     <h2>Fotky z poslední akce:</h2>
@@ -793,4 +793,4 @@ Další možnost je využít službu https://www.webzdarma.cz/, která nabízí 
 - Zkontrolujte svou emailovou schránku a najděte email "Aktivace účtu Webzdarma.cz" a aktivujte účet.
 - Dokončete aktivaci vytvořením hesla pro Webzdarma.cz.
 - Nyní otevřete v hlavním menu "Správce souborů" a do složky "web" nahrajte všechny soubory, které tvoří web.
-- Po nahrání souborů zkontrolujte výslednou stránku (např. zde vzorový projekt http://grill-party.wz.cz/)
+- Po nahrání souborů zkontrolujte výslednou stránku (např. zde vzorový projekt [http://grill-party.wz.cz/](http://grill-party.wz.cz:8080))

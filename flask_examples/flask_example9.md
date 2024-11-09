@@ -1,5 +1,5 @@
 # Flask aplikace Knihovnička pro ukládání oblíbených knih a ukládáním do JSON
-Jednoduchá Flask aplikace s formulářem pro vytváření seznamu oblíbených knih a jejich označení, zda jsou již přečtené nebo ne. Všechna data se ukládají do JSON souboru.
+Ukázka Flask aplikace s formulářem pro vytváření seznamu oblíbených knih a jejich označení, zda jsou již přečtené nebo ne. Všechna data se ukládají do JSON souboru.
 
 Struktura projektu:
 ```bash
