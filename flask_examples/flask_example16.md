@@ -1,7 +1,7 @@
 # Flask aplikace s ukázkou použití knihovny FLask-Login pro autentizaci i autorizaci.
 Kompletní ukázka Flask aplikace, která zahrnuje autentizaci a autorizaci uživatelů, včetně registrace, přihlašování, a jednoduchého admin panelu.
 
-nto příklad je další ukázka přihlášení uživatele, chráněné stránky (přístupné pouze přihlášeným uživatelům) a odhlášení uživatele pomocí knihovny `Flask-Login`. Oproti předchozí ukázace je zde heslo ochráněné speciálním algoritmem a není do databáze uloženo v čitelné podobě. Při prvním spuštění aplikace bude vytvořena složka `instance` a uvnitř soubor `users.db` s databází. Pomocí nástroje DB Browser for SQLite je možné sledovat, jak jsou data v databázi vytvářena, editována a mazána.
+Tento příklad zahrnuje přihlášení uživatele, chráněnou stránku (přístupnou pouze přihlášeným uživatelům) a odhlášení uživatele pomocí knihovny `Flask-Login`. Oproti předchozí ukázace je zde heslo ochráněné speciálním algoritmem a není do databáze uloženo v čitelné podobě. Při prvním spuštění aplikace bude vytvořena složka `instance` a uvnitř soubor `users.db` s databází. Pomocí nástroje DB Browser for SQLite je možné sledovat, jak jsou data v databázi vytvářena, editována a mazána.
 
 Instalace potřebných knihoven.
 ```bash

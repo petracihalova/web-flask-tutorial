@@ -1,5 +1,5 @@
 # REST API ve Flasku
-Jednoduchá ukázka REST API ve Flasku se základními CRUD operacemi nad kolekcí knih. Data jsou ukládáná in-memory.
+Ukázka REST API ve Flasku se základními CRUD operacemi nad kolekcí knih. Data jsou ukládáná in-memory.
 - `GET /api/books` vrátí seznam všech knih.
 - `GET /api/books/<id>` vrátí konkrétní knihu podle jejího ID.
 - `POST /api/books` přidá novou knihu na seznam.
