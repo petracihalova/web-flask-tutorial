@@ -99,7 +99,7 @@ Virtuální prostředí tedy zajišťuje čisté, izolované prostředí pro ka�
 
 **Vytvoření virtuálního prostředí s Windows**
 - Vytvořte si virtuálního prostředí `python -m venv projekt-venv`,
-- aktivujte si virtuálního prostředí `.\project-venv\Scrtipts\activate`.
+- aktivujte si virtuálního prostředí `.\project-venv\Scripts\activate`.
 
 
 Po aktivaci je název virtuálního prostředí `project-venv` vidět před promptem v terminálu. Virtuální prostředí lze deaktivovat pomocí příkazu `deactivate`.

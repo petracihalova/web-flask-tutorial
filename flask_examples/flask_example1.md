@@ -47,7 +47,7 @@ def get_data():
 @app.route('/message')
 def message():
     '''
-    Funke message() vrací jednoduchou textovou zprávu.
+    Funkce message() vrací jednoduchou textovou zprávu.
     '''
     return "Toto je jednoduchá textová zpráva."
 
@@ -70,4 +70,4 @@ Soubor `index.html` uvnitř složky `templates`:
 </html>
 ```
 
-Flask aplikace se ve výchozím nastavení spustí na portu 5000. Pokud v prohlížeči navštívíš `http://localhost:5000/`, zobrazí se HTML stránka. Pokud navštívíš `http://localhost:5000/api/data`, dostaneš JSON odpověď, a pokud navštívíš `http://localhost:5000/message`, zobrazí se textová zpráva.
+Flask aplikace se ve výchozím nastavení spustí na portu 5000. Pokud v prohlížeči navštívíte `http://localhost:5000/`, zobrazí se HTML stránka. Po otevření `http://localhost:5000/api/data` dostanete JSON odpověď, a pokud navštívíte `http://localhost:5000/message`, zobrazí se textová zpráva.
