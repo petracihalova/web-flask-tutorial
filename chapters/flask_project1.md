@@ -33,7 +33,7 @@ if __name__ == '__main__':
 ```
 
 ## Zobrazení seznamu úkolů
-Jako první si vytvořte HMTL stránku `index.html`, která bude obsahovat základní rozložení stránky - záhlaví, jednoduché horizontální menu se třemi položkami, tělo s obsahem a zápatí. Samotný obsah bude tvořit seznam úkolů (element `ul`), které budou zatím tzv. hardcoded, tedy pevně zapsány (zatím nebudou dynamicky generovány nebo načítány z databáze).
+Jako první si vytvořte HMTL stránku `index.html`, která bude obsahovat základní rozložení stránky - záhlaví, jednoduché horizontální menu se třemi položkami, tělo s obsahem a zápatí. Samotný obsah bude tvořit seznam úkolů (element `ul`), které budou tzv. hardcoded, tedy pevně zapsány (nebudou dynamicky generovány nebo načítány z databáze).
 
 Výsledný HTML dokument může vypadat třeba takto:
 ```html
