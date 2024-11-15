@@ -1,5 +1,5 @@
-# Flask aplikace "Book Manager" s ukázkou všech základních databázových operací
- Ukázka Flask aplikace, která provádí všechny základní CRUD operace (vytvoření, čtení, aktualizace a mazání) s databází SQLite. Tento příklad se zaměřuje na správu knih, které obsahují název, autora a informaci o tom, zda byly přečteny. Při prvním spuštění aplikace bude vytvořena složka `instance` a uvnitř soubor `books_crud.db` s databází. Pomocí nástroje DB Browser for SQLite je možné sledovat, jak jsou data v databázi vytvářena, editována a mazána.
+# Flask aplikace "Book Manager" s ukázkou základních databázových operací
+ Ukázka Flask aplikace, která provádí základní CRUD operace (vytvoření, čtení, aktualizace a mazání) s databází SQLite. Aplikace slouží ke správě knih, které obsahují název, autora a informaci o tom, zda byly přečteny. Při prvním spuštění aplikace bude vytvořena složka `instance` a uvnitř soubor `books_crud.db` s databází. Pomocí nástroje DB Browser for SQLite je možné sledovat, jak jsou data v databázi vytvářena, editována a mazána.
 
 Kromě frameworku `Flask` příklad používá také knihovny `Flask-SQLAlchemy` a `Flask-WTF`, které je nutné nainstalovat do virtuálního prostředí.
 ```bash

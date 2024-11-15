@@ -1,5 +1,5 @@
 # Flask aplikace s ukázkou použití šablon a Jinja2 výrazů
-Ukázka Flask aplikace s přehledem kurzů na hlavní stránce. Po kliknutí na stránku "Moje kurzy" se vyfiltrují pouze kurzy přihlášeného uživatele (to je pouze simulováno pomocí náhodného vybráni záznamu).
+Ukázka Flask aplikace s přehledem kurzů na hlavní stránce. Po kliknutí na stránku "Moje kurzy" se vyfiltrují pouze kurzy přihlášeného uživatele (to je simulováno pomocí náhodného vybráni záznamu).
 
 V šablonách je vytvořen základní HTML dokument `layout.html`, který je doplněn o obsah ze souborů `index.html` nebo `about.html` podle toho, co je vybráno z hlavního menu.
 

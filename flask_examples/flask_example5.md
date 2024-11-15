@@ -30,7 +30,7 @@ def about():
     return render_template("about.html")
 
 @app.route("/contact")
-def contatc():
+def contact():
     return render_template("contact.html")
 
 if __name__ == "__main__":
