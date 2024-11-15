@@ -3,9 +3,9 @@
 - CRUD operace pro úkoly: Vytvoření funkce pro přidávání, mazání a úpravu úkolů v databázi.
 
 ## Spuštění aplikace
-Otevřete si složku s projektem a ve virtuálním prostředí si pusťte aplikaci My TODO list. V prohlížeči zkontrolujte, že aplikace funguje. V tuto chvíli máme připravenou základní strukturu aplikace a nastaveny Bootstrap styly. Také jsme přidali formulář pro přidávání nových úkolů pomocí knihovny `Flask-WTF`, nastavili jsme validace pro jednotlivá pole a dynamicky generujeme seznam existujících úkolů (jako seznam a jako `DataTable`). 
+Otevřete si složku s projektem a ve virtuálním prostředí si pusťte aplikaci My TODO list. V prohlížeči zkontrolujte, že aplikace funguje. V tuto chvíli máme připravenou základní strukturu aplikace a nastaveny Bootstrap styly. Také jsme přidali formulář pro přidávání nových úkolů pomocí knihovny `Flask-WTF`, nastavili jsme validace pro jednotlivá pole a dynamicky generujeme seznam existujících úkolů. 
 
-V této části si ukážeme, jak trvale ukládat naše data do souborů a do databáze. Také si do projektu přidáme zatím chybějící CRUD operace (úpravu úkolů a jejich mazání).
+V této části si ukážeme, jak trvale ukládat data do souborů a do databáze. Také si do projektu přidáme zatím chybějící CRUD operace (úpravu úkolů a jejich mazání).
 
 ## Trvalé uložení dat do JSON souboru
 Abychom mohli ukládat data o úkolech do souboru JSON, je nutné nejdříve rozšířit třídu `Task` o nové metody pro převod na a z JSON formátu. Konkrétně budeme potřebovat metodu pro konverzi objektu na slovník a také pro vytvoření objektu z JSON dat. 
@@ -243,9 +243,9 @@ if __name__ == "__main__":
 ```
 
 ## Smazání úkolů
-Aby bylo možné přidat možnost mazání úkolu, je nutné nejdříve implementovat novou cestu (route), která bude zpracovávat požadavek na smazání úkolu, a upravit šablonu tak, aby zahrnovala tlačítko pro smazání úkolu.
+Aby bylo možné přidat možnost mazání úkolu, je nutné implementovat novou cestu (route), která bude zpracovávat požadavek na smazání úkolu, a upravit šablonu tak, aby zahrnovala tlačítko pro smazání úkolu.
 
-Nejdříve přidáme novou cestu do souboru `app.py`, která se postará o mazání úkolu podle jeho `id`. 
+Jako první krok přidáme novou cestu do souboru `app.py`, která se postará o mazání úkolu podle jeho `id`. 
 ```python
 @app.route("/delete/<int:task_id>")
 def delete_task(task_id):
@@ -256,7 +256,7 @@ def delete_task(task_id):
     return redirect(url_for("index"))  # Přesměrování na hlavní stránku
 ```
 
-Úprava šablony `index.html` a přidání tlačítka pro smazání úkolu:
+Následuje úprava šablony `index.html` a přidání tlačítka pro smazání úkolu:
 ```html
 <!-- Seznam úkolů -->
 <h2 class="my-4">Seznam úkolů</h2>

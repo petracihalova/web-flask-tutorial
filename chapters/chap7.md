@@ -23,10 +23,10 @@
 ***
 
 ## 7.1 Ukládání dat do paměti, souborů, databáze
-V podstatě každý projekt pracuje s daty. Těchto dat může být více nebo méně a je tedy nutné řešit otázku, jak data ukládat. Nejjednodušším způsobem je ukládání dat do paměti počítače. Další možností je jejich uložení do souborů. Jak se projekt rozrůstá, může vyvstat potřeba ukládat data do databáze. Každý způsob ukládání má své výhody a je vhodný pro různé situace.
+ Každý projekt pracuje s daty. Dat může být více nebo méně a je potřeba řešit otázku, jak data ukládat. Nejjednodušším způsobem je ukládání dat do paměti počítače. Další možností je jejich uložení do souborů. Jak se projekt rozrůstá, může vyvstat potřeba ukládat data do databáze. Každý způsob ukládání má své výhody a je vhodný pro různé situace.
 
 ### Ukládání dat do paměti (in-memory storage)
-Tento způsob je nejjednodušší a používá se při vývoji nebo u malých aplikací, kde nejsou požadavky na trvalé ukládání dat. Data se ukládají do proměnné (např. seznamu nebo slovníku) přímo v kódu aplikace. Po restartu aplikace se tato data ztratí, protože jsou pouze v paměti.
+Tento způsob se používá při vývoji nebo u malých aplikací, kde nejsou požadavky na trvalé ukládání dat. Data se ukládají do proměnné (např. seznamu nebo slovníku) přímo v kódu aplikace. Po restartu aplikace se tato data ztratí, protože jsou pouze v paměti.
 ```python
 data = []
 
@@ -36,10 +36,10 @@ def add_data():
     data.append(new_item)
     return jsonify(data)
 ```
-Mezi výhody tohoto přístup patří jednoduchá implementace a rychlý přístup k datům. Data však nejsou trvale uložena a při restartu aplikace o tato data přicházíme. Tento způsob také není vhodný pro větší množství dat.
+Výhodou tohoto přístupu je jednoduchá implementace a rychlý přístup k datům. Data však nejsou trvale uložena a při restartu aplikace jsou data smazána. Tento způsob také není vhodný pro větší množství dat.
 
 ### Ukládání dat do souborů (JSON)
-Jednou z možností, jak trvale uchovávat data a zabránit jejich smazání při restartování aplikace, je jejich uložení do souborů. Toto řešení je vhodné pro malé aplikace, kde není mnoho dat. Data jsou uložena do textového souboru (např. ve formátu JSON, který umožňuje snadnou práci s daty ve formě slovníků a seznamů) a v případě potřeby jsou tato data ze souboru načtena.
+Jednou z možností, jak trvale uchovávat data a zabránit jejich smazání při restartování aplikace, je uložení do souborů. Toto řešení je vhodné pro malé aplikace, kde není mnoho dat. Data jsou uložena do textového souboru (např. ve formátu JSON, který umožňuje snadnou práci s daty ve formě slovníků a seznamů) a v případě potřeby jsou tato data ze souboru načtena.
 ```python
 import json
 
@@ -62,10 +62,10 @@ def add_data():
     save_data(data)
     return jsonify(data)
 ```
-Data jsou trvale uchována i při restartu počítače a uložené soubory jsou snadno čitelné a editovatelné. Nevýhodnou může být to, že při větším objemu dat může být zápis i čtení do souboru pomalé a to ovlivní i rychlost samotné aplikace. Také tento přístup není vhodný pro paralelní přístup k datům, neboť soubory mohou být při čtení zamčené.
+Data jsou trvale uchována i při restartu aplikace a uložené soubory jsou snadno čitelné a editovatelné. Nevýhodnou může být, že při větším objemu dat může být zápis a čtení do souboru pomalý, což má dopad na fungování samotné aplikace. Tento přístup není také vhodný pro paralelní přístup k datům, protože soubory mohou být při čtení zamčené.
 
 ### Ukládání dat do databáze
-Jakmile aplikace začne zpracovávat větší množství dat nebo je potřeba zpráacovávat složitější dotazy (např. filtrování, třídění), je vhodné začít používat databázi. [SQLite](https://www.sqlite.org/) je skvělá volba pro menší projekty, protože je lehká, nevyžaduje samostatný server a ukládá data do souboru. Flask má také k práci s databázemi velmi užitečnou knihovnu [Flask-SQLAlchemy](https://flask-sqlalchemy.palletsprojects.com/en/3.1.x/).
+Jakmile aplikace začne zpracovávat větší množství dat nebo složitější dotazy (např. filtrování, třídění), je vhodné začít používat databázi. [SQLite](https://www.sqlite.org/) je skvělá volba pro menší projekty, protože je lehká, nevyžaduje samostatný server a ukládá data do souboru. Flask má také k práci s databázemi velmi užitečnou knihovnu [Flask-SQLAlchemy](https://flask-sqlalchemy.palletsprojects.com/en/3.1.x/).
 
 ## 7.2 JSON a Flask
 **JSON** (JavaScript Object Notation) je lehký formát pro výměnu dat, který je snadno čitelný pro lidi i stroje. Jeho struktura vychází z JavaScriptu, ale je široce podporována v mnoha programovacích jazycích. Ve Flask aplikacích se JSON často používá pro komunikaci mezi klientem a serverem, zejména při práci s REST API.
@@ -149,10 +149,10 @@ Pokud Flask aplikace poskytuje REST API, JSON je téměř vždy preferovaným fo
 ## 7.3 REST API, OpenApi specifikace, Swagger Editor, YAML
 
 ### API
-API (Application Programming Interface) je rozhraní, které umožňuje vzájemnou komunikaci mezi různými softwarovými aplikacemi. V kontextu webu se jedná o způsob, jakým jedna aplikace komunikuje s jinou přes síť (např. internet). API je často navrženo tak, aby umožňovalo vývojářům využívat funkce jiné aplikace či služby bez toho, aby museli znát její vnitřní implementaci. Více o tom, co je API si přečtěte na stránce [cojeapi.cz](https://cojeapi.cz/).
+API (Application Programming Interface) je rozhraní, které umožňuje vzájemnou komunikaci mezi různými softwarovými aplikacemi. V kontextu webu se jedná o způsob, jakým jedna aplikace komunikuje s jinou přes síť (např. internet). API je často navrženo tak, aby umožňovalo vývojářům využívat funkce jiné aplikace či služby bez toho, aby museli znát její vnitřní implementaci. Více o tom, co je API se dozvíte třeba na stránce [cojeapi.cz](https://cojeapi.cz/).
 
 ### REST API
-REST (Representational State Transfer) je architektonický styl, který definuje sadu pravidel pro vytváření webových služeb. REST API je specifická forma API, která dodržuje principy REST architektury. Základní myšlenkou REST API je, že operace na serveru (např. čtení, vytváření, mazání nebo aktualizace dat) jsou realizovány prostřednictvím dobře známých HTTP metod.
+REST (Representational State Transfer) je architektonický styl, který definuje sadu pravidel pro vytváření webových služeb. REST API je specifická forma API, která dodržuje principy REST architektury. Základní myšlenkou REST API je, že operace na serveru (např. čtení, vytváření, mazání nebo aktualizace dat) jsou realizovány prostřednictvím HTTP metod.
 
 **Základní principy REST API:**
 
@@ -179,12 +179,12 @@ OpenApi specifikace může být napsána ve formátu JSON nebo YAML. Oba formát
 
 ### Swagger Editor
 
-[Swagger Editor](https://editor-next.swagger.io) je webový nástroj, který umožňuje vývojářům interaktivně vytvářet, prohlížet a validovat OpenAPI specifikace v reálném čase. Jedná se o vizuální editor, který zobrazuje OpenAPI specifikace napsané v YAML nebo JSON formátu na jedné straně a jejich vizualizovanou dokumentaci na straně druhé. Je to skvělý nástroj pro návrh a dokumentaci REST API. Editor ihned upozorňuje na chyby v syntaxi nebo špatně strukturované části API specifikace a také umožňuje okamžité zasílání požadavků (requests) a sledování odpovědí (responses). Swagger Editor je velmi užitečný nástroj pro všechny, kteří chtěji navrhovat strukturu API, generovat dokumentaci, testovat API nebo sdílet tuto specifikaci s dalšími týmy.
+[Swagger Editor](https://editor-next.swagger.io) je webový nástroj, který umožňuje vývojářům interaktivně vytvářet, prohlížet a validovat OpenAPI specifikace v reálném čase. Jedná se o vizuální editor, který zobrazuje OpenAPI specifikace napsané v YAML nebo JSON formátu na jedné straně a jejich vizualizovanou dokumentaci na straně druhé. Je to skvělý nástroj pro návrh a dokumentaci REST API. Editor ihned upozorňuje na chyby v syntaxi nebo špatně strukturované části API specifikace a také umožňuje okamžité zasílání požadavků (requests) a sledování odpovědí (responses). Swagger Editor je velmi užitečný nástroj pro všechny, kteří potřebují navrhnout strukturu API, generovat dokumentaci, testovat API nebo sdílet tuto specifikaci s dalšími týmy.
 
 ### Povolení CORS ve Flasku
 Při použití Swagger Editoru a posílání požadavků z něj se může objevit chyba `Failed to fetch.`, která může být způsobena omezením CORS (Cross-Origin-Resource Sharing). Když je požadavek odeslán ze Swagger Editoru a server (Flask aplikace) neumožňuje CORS, prohlížeč, ve kterém Swagger Editor běží, tyto požadavky blokuje. Stejné požadavky lze odeslat pomocí cURL, protože tento nástroj není tímto omezením ovlivněn.
 
-Řešením je povolit CORS ve Flasku pomocí knihovny `flask-cors`. Tato knihovna zajistí, že tvé API bude povolovat požadavky z jiných domén (například ze Swagger Editoru).
+Řešením je povolit CORS ve Flasku pomocí knihovny `flask-cors`. Tato knihovna zajistí, že API bude povolovat požadavky z jiných domén (například ze Swagger Editoru).
 
 Nejdříve je nutné knihovnu nainstalovat do virtuálního prostředí projektu:
 ```bash
@@ -205,7 +205,7 @@ CORS(app)
 ```
 
 ### YAML a jeho srovnání s JSON
-YAML (YAML Ain’t Markup Language) a JSON (JavaScript Object Notation) jsou oba populární formáty pro serializaci dat, často používané pro konfiguraci souborů, výměnu dat mezi systémy a API specifikace. I když mají podobné cíle, liší se v syntaxi a vhodnosti pro různé případy použití.
+YAML (YAML Ain’t Markup Language) a JSON (JavaScript Object Notation) jsou populární formáty pro serializaci dat, často používané pro konfiguraci souborů, výměnu dat mezi systémy a API specifikace. I když mají podobné cíle, liší se v syntaxi a vhodnosti pro různé případy použití.
 
 **YAML** je formát zaměřený na čitelnost člověkem a jednoduchost. Byl navržen tak, aby umožňoval pohodlnější práci s daty, což znamená, že je často snadno čitelný i pro méně technicky orientované uživatele. YAML se vyhýbá použití složitých syntaktických prvků, jako jsou složené závorky nebo uvozovky, které jsou typické pro JSON.
 
@@ -258,7 +258,7 @@ Tento příkaz smaže záznamy, které odpovídají podmínce.
 
 
 ## 7.5 Flask a SQLAlchemy
-[SQLAlchemy](https://www.sqlalchemy.org) je knihovna pro práci s databázemi v Pythonu. Je to plnohodnotný ORM (Object Relational Mapper) nástroj, který umožňuje vývojářům pracovat s databázemi jako s Pythonovými objekty místo používání čistých SQL dotazů. Zajišťuje abstrakci databáze – překládá Python objekty do databázových tabulek a záznamů a zpět, což usnadňuje práci s různými relačními databázemi (např. SQLite, PostgreSQL, MySQL) bez nutnosti psát SQL dotazy ručně.
+[SQLAlchemy](https://www.sqlalchemy.org) je knihovna pro práci s databázemi v Pythonu. Je to plnohodnotný ORM (Object Relational Mapper) nástroj, který umožňuje vývojářům pracovat s databázemi jako s Python objekty místo používání čistých SQL dotazů. Zajišťuje abstrakci databáze – překládá Python objekty do databázových tabulek a záznamů a zpět, což usnadňuje práci s různými relačními databázemi (např. SQLite, PostgreSQL, MySQL) bez nutnosti psát SQL dotazy ručně.
 
 [Flask-SQLAlchemy](https://flask-sqlalchemy.readthedocs.io/en/3.1.x/) je rozšíření pro framework Flask, který zjednodušuje integraci SQLAlchemy do Flask aplikací. Poskytuje vyšší úroveň abstrakce pro práci s databází, specifickou pro Flask, a zajišťuje těsnou integraci s Flaskem (např. snadno se kombinuje s dalšími Flask rozšířeními, jako je Flask-Migrate pro správu migrací databází).
 
@@ -292,7 +292,7 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///mydatabase.db'  # Cesta k dat
 db = SQLAlchemy(app)
 ```
 
-SQLite se tak stává skvělou volbou pro malé aplikace nebo pro vývoj, protože je jednoduchý na používání a vyžaduje minimální konfiguraci. Větší aplikace mohou později přejít na robustnější řešení, jako je [PostgreSQL](https://www.postgresql.org) nebo [MySQL](https://www.mysql.com).
+SQLite je skvělou volbou pro malé aplikace nebo pro vývoj, protože je jednoduchý na používání a vyžaduje minimální konfiguraci. Větší aplikace mohou později přejít na robustnější řešení, jako je [PostgreSQL](https://www.postgresql.org) nebo [MySQL](https://www.mysql.com).
 
 ### DB Browser for SQLite
 [DB Browser for SQLite](https://sqlitebrowser.org) je open-source nástroj, který poskytuje uživatelsky přívětivé rozhraní pro práci s SQLite databázemi. Tento software umožňuje uživatelům snadno vytvářet, prohlížet a upravovat databáze bez nutnosti psaní SQL příkazů. Zde je několik klíčových vlastností a výhod, které DB Browser pro SQLite nabízí:
@@ -315,7 +315,7 @@ Vytváření modelů pro tabulky v rámci Flask aplikací, obzvlášť při pou�
 
 Databázový model v kontextu Flasku a SQLAlchemy je třída, která definuje strukturu tabulky v databázi. Každá instance třídy odpovídá jednomu záznamu v tabulce. Modely umožňují interakci s databází pomocí objektově orientovaného programování.
 
-Modely jsou obvykle definovány jako podtřídy `db.Model`, což je základní třída poskytnutá Flask-SQLAlchemy. Zde je základní příklad modelu pro tabulku `Book`:
+Modely jsou obvykle definovány jako podtřídy `db.Model`, což je základní třída poskytnutá Flask-SQLAlchemy. Zde je ukázka databázového modelu pro tabulku `Book`:
 ```python
 from flask_sqlalchemy import SQLAlchemy
 
@@ -378,7 +378,7 @@ class Book(db.Model):
 - `id`: Primární klíč, typu `Integer`.
 - `name`: Jméno autora, typu `String`, s nastavením `nullable=False`, což znamená, že toto pole musí být vyplněno.
 - `birth_date`: Datum narození autora, typu `Date`, s možností být `nullable`.
-- `books`: Vytváří relaci s modelem `Book`. `backref='author'` znamená, že každá kniha má zpětný odkaz na autora. `lazy=True` znamená, že související objekty (v tomto případě `books`) budou načteny z databáze v samostatném SQL dotazu, když se na ně poprvé odkázáte.
+- `books`: Vytváří relaci s modelem `Book`. `backref='author'` znamená, že každá kniha má zpětný odkaz na autora. `lazy=True` znamená, že související objekty (v tomto případě `books`) budou načteny z databáze v samostatném SQL dotazu, když se na ně poprvé odkážete.
 
 **Model Book:**
 - `id`: Primární klíč, typu `Integer`.
@@ -425,7 +425,7 @@ for book in author.books:
 Poté, co definujeme jednotlivé modely, můžeme s daty začít pracovat: vytvářet je, číst je, aktualizovat je nebo je mazat. Tyto čtyři základní operace jsou označovány jako **CRUD operace**.
 - create (vytvořit) - vytvoření nového záznamu v databázi
 - read (číst) - čtení nebo získání existujícího záznamu z databáze
-- update (aktualizovat) - úprava existujících záznamů v databízi
+- update (aktualizovat) - úprava existujících záznamů v databázi
 - delete (smazat) - odstranění záznamu z databáze
 
 CRUD operace se často mapují na HTTP metody:
@@ -464,7 +464,7 @@ def get_user(user_id):
 ```
 V tomto příkladu se na základě ID uživatele načtou data o konkrétním uživateli z databáze a vrátí se jako JSON.
 
-Následující kód ukzauje, jak lze načíst všechny uživatele z databáze:
+Následující kód ukazuje, jak lze načíst všechny uživatele z databáze:
 ```python
 users = User.query.all()
 ```

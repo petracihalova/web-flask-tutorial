@@ -6,7 +6,7 @@ Kromě frameworku `Flask` příklad používá knihovnu `Flask-SQLAlchemy`, kter
 pip install Flask Flask-SQLAlchemy
 ```
 
-Před samotným spuštěním aplikace pomocí `python app.py` (ve virtuálním prostředí) je možné naplnit databázi daty (tzv. seeding) pomocí příkazu:
+Před spuštěním aplikace pomocí `python app.py` (ve virtuálním prostředí) je možné naplnit databázi daty (tzv. seeding) pomocí příkazu:
 ```bash
 python seed.py
 ```

@@ -5,7 +5,6 @@
 
 - Autentizace uživatelů: Implementace základní autentizace pomocí Flask-Login nebo jiného nástroje.
 - Nasazení aplikace: Jak nasadit Flask aplikaci na platformu PythonAnywhere.
-- Micro úvod do Git a Github: Uložení projektu na GitHub.
 
 **Projekt**
 
