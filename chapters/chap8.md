@@ -156,7 +156,7 @@ Autorizace uživatelů je klíčová pro zabezpečení aplikací, protože zaji�
 **Flask ukázka 16** je ukázka použití Flask-Login pro autentizaci i autorizaci.
 
 
-## 8.3 Flash messages
+## 8.3 BONUS Flash messages
 [Flash Messages](https://flask.palletsprojects.com/en/2.3.x/patterns/flashing/) jsou způsob, jakým aplikace mohou dočasně zobrazovat zprávy uživatelům. Typickými příklady použití jsou:
 
 - Zprávy o úspěšné registraci nebo přihlášení.
