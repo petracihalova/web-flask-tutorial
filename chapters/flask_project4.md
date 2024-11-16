@@ -332,7 +332,7 @@ A takto bude vypadat stejná změna v souboru `register.html` pro dvě pole s he
 </div>
 ```
 
-## Poslední úpravy tabulky
+## Finální úpravy
 Pokud váš projekt neobsahuje tabulku, tak tuto část přeskočte. Do tabulky si přidáme informaci o tom, zda byl úkol dokončen. Přidáme si jak novou buňku do záhlaví, tak i novou buňku do těla tabulky.
 ```html
 <table id="tasks" class="table">
