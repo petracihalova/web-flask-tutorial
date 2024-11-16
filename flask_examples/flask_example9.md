@@ -23,7 +23,7 @@ app = Flask(__name__)
 # Funkce pro načtení knih z JSON souboru
 def load_books():
     if os.path.exists("books.json"):
-        with open("books.json", "r") as file:
+        with open("books.json", "r", encoding="utf-8") as file:
             return json.load(file)
     return []
 
