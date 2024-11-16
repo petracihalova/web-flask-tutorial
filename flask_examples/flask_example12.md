@@ -24,7 +24,7 @@ Struktura projektu:
 │
 ├── app.py
 ├── models.py
-├── seeds.py
+├── seed.py
 └── templates/
     ├── authors.html
     ├── books.html
