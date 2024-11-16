@@ -250,7 +250,7 @@ Podobně bude vypadat i registrační formulář v souboru `register.html`:
 {% endblock %}
 ```
 
-## Ukázka JavaScript
+## BONUS Ukázka JavaScript
 I když součástí tohoto kurzu není JavaScript, pojďme si přidat do projektu malou ukázku. Do přihlašovacího i registračního formuláře si přidáme tlačítko s ikonkou oka, kdy po kliknutí na toto tlačítko se zobrazí hodnota hesla, které jsme do formuláře zadali. V registračním formuláři se navíc bude kontrolovat, zda obě zadaná hesla jsou stejná.
 
 Ve složce `static` si vytvoříme nový soubor `script.js` a vložíme do něj tento kod:
@@ -332,8 +332,8 @@ A takto bude vypadat stejná změna v souboru `register.html` pro dvě pole s he
 </div>
 ```
 
-## Poslední úpravy
-Do tabulky si přidáme informaci o tom, zda byl úkol dokončen. Přidáme si jak novou buňku do záhlaví, tak i novou buňku do těla tabulky.
+## Poslední úpravy tabulky
+Pokud váš projekt neobsahuje tabulku, tak tuto část přeskočte. Do tabulky si přidáme informaci o tom, zda byl úkol dokončen. Přidáme si jak novou buňku do záhlaví, tak i novou buňku do těla tabulky.
 ```html
 <table id="tasks" class="table">
     <thead>
