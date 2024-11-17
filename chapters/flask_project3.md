@@ -205,7 +205,7 @@ A upravit ukládání úkolů do a načítání úkolů z databáze. Konečná p
 from flask import Flask, redirect, render_template, url_for
 
 from form import TaskForm
-from models import Task, db
+from model import Task, db
 
 app = Flask(__name__)
 app.secret_key = "your_secret_key"
@@ -269,7 +269,7 @@ Následuje úprava šablony `index.html` a přidání tlačítka pro smazání �
             <strong>{{ ukol.title }}</strong> - {{ ukol.details }}
         </div>
         <div>
-            <a href="{{ url_for('delete_task', task_id=ukol.id) }}" class="btn btn-danger">Delete</a>
+            <a href="{{ url_for('delete_task', task_id=ukol.id) }}" class="btn btn-danger">Smazat</a>
         </div>
     </li>
     {% endfor %}
@@ -355,16 +355,13 @@ class Task(db.Model):
     details = db.Column(db.Text, nullable=True)
     priority = db.Column(db.String(10), nullable=False)
     completed = db.Column(db.Boolean, default=False)  # Přidání sloupce pro dokončení
-
-    def __repr__(self):
-        return f"<Task {self.title}>"
 ```
 
 Dále vytvoříme novou routu, která podle zadaného id označí úkol jako dokončený:
 ```python
 @app.route("/complete/<int:task_id>")
 def complete_task(task_id):
-    task = Task.query.get_or_404(task_id)
+    task = Task.query.get(task_id)
     task.completed = True
     db.session.commit()
     return redirect(url_for("index"))
@@ -546,7 +543,7 @@ def edit_task(task_id):
 
 @app.route("/complete/<int:task_id>")
 def complete_task(task_id):
-    task = Task.query.get_or_404(task_id)
+    task = Task.query.get(task_id)
     task.completed = True
     db.session.commit()
     return redirect(url_for("index"))
@@ -610,9 +607,6 @@ class Task(db.Model):
     details = db.Column(db.Text, nullable=True)
     priority = db.Column(db.String(10), nullable=False)
     completed = db.Column(db.Boolean, default=False)  # Přidání sloupce pro dokončení
-
-    def __repr__(self):
-        return f"<Task {self.title}>"
 ```
 
 Soubor `templates/base.html`:
