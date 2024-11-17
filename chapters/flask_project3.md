@@ -166,7 +166,7 @@ class TaskForm(FlaskForm):
     )
 ```
 
-Nezapomeňte formulář a importy vymazat ze souboru `index.html` a naopak přidat import formuláře:
+Nezapomeňte formulář a importy vymazat ze souboru `app.py` a naopak přidat import formuláře:
 ```python
 from form import TaskForm
 ```
