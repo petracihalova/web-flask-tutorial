@@ -72,7 +72,7 @@ Dále si do části body vložte blok pro záhlaví `header`, navigaci `nav` a z
 </body>
 ```
 
-Nakonec si v hlavičce stránky (`meta`) změňte titul stránky na "Grilování u Nováků".
+Nakonec si v hlavičce stránky (`head`) změňte titul stránky na "Grilování u Nováků".
 ```html
 <head>
     <meta charset="UTF-8">
