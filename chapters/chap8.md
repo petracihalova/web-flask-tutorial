@@ -50,8 +50,6 @@ Flask-Login je užitečný nástroj pro každého, kdo potřebuje ve své aplika
 ### Příklad
 **Flask ukázka 14** je ukázka použití Flask-Login.
 
-### Příklad
-**Flask ukázka 15** je další ukázka Flask-Login, tentokráte s použitím funkce pro uložení hesla v nečitelné podobě.
 
 ### Hashování hesla
 Hashování hesel je zásadní technika v oblasti zabezpečení, která se používá k ochraně uživatelských hesel. Vzhledem k nárůstu kybernetických útoků a úniků dat je důležité, aby vývojáři implementovali správné metody pro uchovávání hesel.
@@ -82,6 +80,11 @@ Když se uživatel pokusí přihlásit, zadané heslo se hashne stejným způsob
 ```
 
 Tímto způsobem hashování hesel zajišťuje, že i v případě úniku databáze zůstávají hesla chráněná a nečitelné pro útočníky. Vzhledem k těmto zásadám a praktikám by každý vývojář měl brát hashování hesel jako standardní praxi pro zabezpečení uživatelských dat.
+
+
+### Příklad
+**Flask ukázka 15** je další ukázka Flask-Login, tentokráte s použitím funkce pro uložení hesla v nečitelné podobě.
+
 
 ## 8.2 Autorizace uživatelů
 Autentizace a autorizace jsou dva klíčové koncepty v oblasti zabezpečení informací, které slouží k ochraně systémů a dat. Přestože jsou často zaměňovány, mají různé funkce:
